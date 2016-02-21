@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class MazeMapLoader : MonoBehaviour {
     public GameObject board;
-    public Texture2D map;
-
-    public GameObject emptyTile;
+    public TextAsset mapAsset;
+    private byte[] map;
+    
     public GameObject traversableTile;
     public GameObject wallTile;
     public GameObject doorTile;
@@ -14,36 +14,55 @@ public class MazeMapLoader : MonoBehaviour {
     public GameObject bombTile;
     public GameObject bananaTile;
 
-    void Awake() {
-        Dictionary<Color, GameObject> tileTypes = ReadTileTypes(map);
+    void Start()
+    {
+        map = mapAsset.bytes;
+    }
 
-        for (int y = 1; y < map.height; y++)
+
+    void Awake()
+    {
+        Instantiate(traversableTile, new Vector3(0, 0), Quaternion.identity);
+        Instantiate(wallTile, new Vector3(1, 0), Quaternion.identity);
+        Instantiate(bombTile, new Vector3(0, 1), Quaternion.identity);
+    }
+    void Awakea() {
+        Dictionary<byte, GameObject> tileTypes = ReadTileTypes(map);
+
+        int w = 45; //map.width;
+        int h = 40; //map.height;
+
+        for (int y = 1; y < h; y++)
         {
-            for (int x = 0; x < map.width; x++)
+            for (int x = 0; x < w; x++)
             {
-                GameObject tile;
                 try {
-                    tile = tileTypes[map.GetPixel(x, y)];
+                    GameObject tile = tileTypes[GetValue(map, x, y, w)];
+                    Instantiate(tile, new Vector3(x, y), Quaternion.identity);
                 }
-                catch (KeyNotFoundException e){
-                    tile = emptyTile;
+                catch (KeyNotFoundException ignore){
                 }
-                
-                Instantiate(tile, new Vector3(x, y), Quaternion.identity);
             }
         }
     }
 
-    Dictionary<Color, GameObject> ReadTileTypes(Texture2D map)
+    private static byte GetValue(byte[] map, int x, int y, int w)
     {
-        Dictionary<Color, GameObject> tileTypes = new Dictionary<Color, GameObject>();
-        tileTypes.Add(map.GetPixel(0, 0), emptyTile);
-        tileTypes.Add(map.GetPixel(0, 0), traversableTile);
-        tileTypes.Add(map.GetPixel(1, 0), wallTile);
-        tileTypes.Add(map.GetPixel(2, 0), doorTile);
-        tileTypes.Add(map.GetPixel(3, 0), leverTile);
-        tileTypes.Add(map.GetPixel(4, 0), bombTile);
-        tileTypes.Add(map.GetPixel(5, 0), bananaTile);
+        return map[y * w + x];
+    }
+
+    Dictionary<byte, GameObject> ReadTileTypes(byte[] map)
+    {
+        Dictionary<byte, GameObject> tileTypes = new Dictionary<byte, GameObject>();
+
+        Debug.Log("A "+map[1]);
+        //tileTypes.Add(map[0], emptyTile);
+        tileTypes.Add(map[1], traversableTile);
+        tileTypes.Add(map[2], wallTile);
+        tileTypes.Add(map[3], doorTile);
+        tileTypes.Add(map[4], leverTile);
+        tileTypes.Add(map[5], bombTile);
+        tileTypes.Add(map[6], bananaTile);
         return tileTypes;
     }
 }
