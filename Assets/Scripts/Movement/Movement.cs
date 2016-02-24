@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
     private List<Vector3> trajectory;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         trajectory = new List<Vector3>();

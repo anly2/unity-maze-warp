@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour {
     void Update()
     {
         timeText.text = "Time: " + (int) TimeTracker.timer;
-        Debug.Log(TimeTracker.timer);
+        //Debug.Log(TimeTracker.timer);
         deathText.text = "Death: " + 0;
         turnText.text = "Turn: " + 0 + "/" + 10;
         //deathText.text = "Death: " + GameController.instance.GetDeathCount();

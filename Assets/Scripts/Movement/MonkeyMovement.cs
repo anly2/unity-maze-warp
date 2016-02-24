@@ -18,8 +18,8 @@ public class MonkeyMovement : Movement, TurnBased {
         if (target == null)
             return;
 
-        Vector3 dest = target.Current;
         target.MoveNext();
+        Vector3 dest = target.Current;
 
         Move(dest);
     }

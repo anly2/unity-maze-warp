@@ -7,16 +7,19 @@ public class SpawnMonkeyChaser : MonoBehaviour, TurnBased
     public GameObject monkeyObject;
     public int spawnTurnDelay;
 
-    private Transform spawnPoint;
+    private Vector3 spawnPosition;
 
 	void Start () {
         GameController.instance.AddTurnBasedListener(this);
 
-        spawnPoint = gameObject.transform;
+        spawnPosition = gameObject.transform.position;
 	}
 
     void TurnBased.Turn()
     {
+        if (spawnTurnDelay < 0)
+            return;
+
         if (spawnTurnDelay-- > 0)
             return;
 
@@ -25,8 +28,8 @@ public class SpawnMonkeyChaser : MonoBehaviour, TurnBased
 
     public void SpawnMonkey()
     {
-        GameObject monkey = Instantiate(monkeyObject, spawnPoint.position, Quaternion.identity) as GameObject;
-        monkey.transform.parent = spawnPoint.parent;
+        GameObject monkey = Instantiate(monkeyObject, spawnPosition, Quaternion.identity) as GameObject;
+        monkey.transform.parent = gameObject.transform.parent;
 
         MonkeyMovement monkeyMovement = monkey.GetComponent<MonkeyMovement>();
 
