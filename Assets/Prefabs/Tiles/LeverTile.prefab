@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 421108}
   - 212: {fileID: 21222800}
   - 61: {fileID: 6109252}
+  - 114: {fileID: 11485258}
   m_Layer: 8
   m_Name: LeverTile
   m_TagString: Untagged
@@ -42,6 +43,18 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .200000003, y: .200000003}
+--- !u!114 &11485258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf5ca6264255cf4aac38d60d77877d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedDoor: {fileID: 0}
 --- !u!212 &21222800
 SpriteRenderer:
   m_ObjectHideFlags: 1

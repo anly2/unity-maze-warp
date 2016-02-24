@@ -12,9 +12,6 @@ public class MonkeyMovement : Movement, TurnBased {
 
     void TurnBased.Turn()
     {
-        //#! get dest from target's trajectory
-        //#! move monkey
-
         if (target == null)
             return;
 
