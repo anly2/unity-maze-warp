@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class GameController : MonoBehaviour {
     public static GameController instance = null;
@@ -10,6 +11,9 @@ public class GameController : MonoBehaviour {
     private bool turnInProgress;
     private List<TurnBased> turnListeners;
 
+    public GameObject HUD;
+
+    UIManager uiManager;
 
 	void Awake () {
         if (instance == null)
@@ -24,8 +28,23 @@ public class GameController : MonoBehaviour {
 
         turnInProgress = false;
         turnListeners = new List<TurnBased>();
-	}
+        uiManager = HUD.GetComponent<UIManager>();
 
+        InitGame();
+    }
+
+    void InitGame()
+    {
+        uiManager.GameStart();
+    }
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            uiManager.GameOver();
+        }
+    }
 
     public void AddTurnBasedListener(TurnBased listener)
     {
