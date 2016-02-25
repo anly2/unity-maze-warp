@@ -5,8 +5,6 @@ using System;
 
 public class Movement : MonoBehaviour 
 {
-    public float moveTime = 0.2f;
-
     private Rigidbody2D rb;
     private List<Vector3> trajectory;
     private float requiredSpeed;
@@ -15,6 +13,10 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         trajectory = new List<Vector3>();
+    }
+
+    void Start() {
+        float moveTime = GameController.instance.turnDuration;
         requiredSpeed = 1f / moveTime;
     }
 
@@ -50,7 +52,6 @@ public class Movement : MonoBehaviour
             distance = CalcuEuclideanDistance(newPos, end);
             yield return null;
         }
-        Debug.Log(distance);
     }
 
     float CalcuEuclideanDistance(Vector3 start, Vector3 end)
