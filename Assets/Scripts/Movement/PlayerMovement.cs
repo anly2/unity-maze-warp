@@ -15,6 +15,7 @@ public class PlayerMovement : Movement {
             if (GameController.instance.TakeTurn())
             {
                 Vector3 dest = gameObject.transform.position + new Vector3(horizontal, vertical);
+                //Debug.Log(dest);    
                 Move(dest);
             }
         }
