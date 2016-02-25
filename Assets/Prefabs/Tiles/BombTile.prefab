@@ -9,9 +9,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 437032}
   - 212: {fileID: 21222248}
+  - 114: {fileID: 11475426}
+  - 61: {fileID: 6149292}
   m_Layer: 8
   m_Name: BombTile
-  m_TagString: Pickup
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23,11 +25,41 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!61 &6149292
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 140776}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1.54, y: 1.54}
+--- !u!114 &11475426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 140776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ef6cc3a71df7e48bae2dacd86bcf0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bananaItem: {fileID: 106920, guid: 632e823ba331aae42bcdbc18eb7a2227, type: 2}
+  bombItem: {fileID: 197782, guid: 7b6124eb285556740bc0dbff2629dfcc, type: 2}
+  itemShowUpPos:
+  - {fileID: 430870, guid: 2e8136702bcd79b41a494f79199366c8, type: 2}
+  - {fileID: 433200, guid: f46151f0573137b4cb10cb31752bab08, type: 2}
 --- !u!212 &21222248
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -64,7 +96,31 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: itemShowUpPos.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: bombItem
+      value: 
+      objectReference: {fileID: 197782, guid: 7b6124eb285556740bc0dbff2629dfcc, type: 2}
+    - target: {fileID: 0}
+      propertyPath: bananaItem
+      value: 
+      objectReference: {fileID: 106920, guid: 632e823ba331aae42bcdbc18eb7a2227, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Bomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 140776}

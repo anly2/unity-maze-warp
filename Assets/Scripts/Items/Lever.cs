@@ -11,8 +11,8 @@ public class Lever : MonoBehaviour {
         if (other.gameObject.tag != "Player")
             return;
 
-        TurnOnLeverAnim(gameObject);
-
+        LeverAnim();
+            
         if (linkedDoor == null)
             return;
 
@@ -24,11 +24,8 @@ public class Lever : MonoBehaviour {
             door.Open();
     }
 
-    void TurnOnLeverAnim(GameObject gameObject)
+    void LeverAnim()
     {
-        if (gameObject.tag != "Lever")
-            return;
-
         SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
         sprite.flipX = enabled;
     }

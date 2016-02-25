@@ -8,9 +8,10 @@ TagManager:
   - Enemy
   - Wall
   - Destructible
-  - Pickup
   - Door
   - Lever
+  - Bomb
+  - Banana
   layers:
   - Default
   - TransparentFX
