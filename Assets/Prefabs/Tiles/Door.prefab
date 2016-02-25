@@ -11,8 +11,9 @@ GameObject:
   - 212: {fileID: 21241684}
   - 114: {fileID: 11437418}
   - 61: {fileID: 6190046}
+  - 114: {fileID: 11420350}
   m_Layer: 9
-  m_Name: DestructibleWall
+  m_Name: Door
   m_TagString: Destructible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,6 +44,20 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+--- !u!114 &11420350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd445c9d1e599b41b2bdde34076cd26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openState: {fileID: 21300096, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
+  closedState: {fileID: 21300060, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
+  startsClosed: 1
 --- !u!114 &11437418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -55,10 +70,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300042, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
-  - {fileID: 21300044, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
-  - {fileID: 21300046, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
-  - {fileID: 21300048, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
+  - {fileID: 21300060, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
+  - {fileID: 21300106, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
 --- !u!212 &21241684
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -93,18 +106,14 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
-      propertyPath: sprites.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: sprites.Array.data[0]
+      propertyPath: openState
       value: 
-      objectReference: {fileID: 21300060, guid: fbe1e7b94bb1a4a099d5bcb15a00141c,
+      objectReference: {fileID: 21300096, guid: fbe1e7b94bb1a4a099d5bcb15a00141c,
         type: 3}
     - target: {fileID: 0}
-      propertyPath: sprites.Array.data[1]
+      propertyPath: closedState
       value: 
-      objectReference: {fileID: 21300106, guid: fbe1e7b94bb1a4a099d5bcb15a00141c,
+      objectReference: {fileID: 21300060, guid: fbe1e7b94bb1a4a099d5bcb15a00141c,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

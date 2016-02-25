@@ -7,10 +7,18 @@ public class Lever : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            if (linkedDoor != null)
-                linkedDoor.SetActive(false);
-        }
+        if (other.gameObject.tag != "Player")
+            return;
+
+
+        if (linkedDoor == null)
+            return;
+
+        Door door = linkedDoor.GetComponent<Door>();
+
+        if (door == null)
+            linkedDoor.SetActive(false);
+        else
+            door.Open();
     }
 }
