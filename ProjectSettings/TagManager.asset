@@ -17,9 +17,9 @@ TagManager:
   - 
   - 
   - Floor
-  - BlockingLayer
-  - 
-  - 
+  - Wall
+  - Actor
+  - Door
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: Actor
     uniqueID: 3375702175
+    locked: 0
+  - name: Door
+    uniqueID: 3219835091
     locked: 0
