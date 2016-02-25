@@ -12,12 +12,16 @@ public class PlayerMovement : Movement {
 
         if (horizontal != 0 || vertical != 0)
         {
-            if (GameController.instance.TakeTurn())
-            {
-                Vector3 dest = gameObject.transform.position + new Vector3(horizontal, vertical);
-                //Debug.Log(dest);    
-                Move(dest);
-            }
+            Vector3 dest = gameObject.transform.position + new Vector3(horizontal, vertical);
+            
+            if (GameController.instance.TurnInProgress())
+                return;
+            
+            if (!CanMove(dest))
+                return;
+
+            Move(dest);
+            GameController.instance.TakeTurn();
         }
     }
 }

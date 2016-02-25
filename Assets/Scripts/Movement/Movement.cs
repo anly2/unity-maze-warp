@@ -5,6 +5,8 @@ using System;
 
 public class Movement : MonoBehaviour 
 {
+    public LayerMask blockingLayer;
+
     private Rigidbody2D rb;
     private List<Vector3> trajectory;
     private float requiredSpeed;
@@ -36,8 +38,18 @@ public class Movement : MonoBehaviour
 
     public void Move(Vector3 dest)
     {
+        if (!CanMove(dest))
+            return;
+
         trajectory.Add(dest);
         StartCoroutine(SmoothMovement(dest));
+    }
+
+    public bool CanMove(Vector3 dest)
+    {
+        RaycastHit2D hit = Physics2D.Linecast(rb.position, dest, blockingLayer);
+
+        return (hit.transform == null);
     }
 
     IEnumerator SmoothMovement(Vector3 end)
