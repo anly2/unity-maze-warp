@@ -26,7 +26,8 @@ public class PickUp : MonoBehaviour {
     {
         int index = carriedItems.count;
 
-        if (index > itemShowUpPos.Length)
+        //if (index > itemShowUpPos.Length)
+        if (index >= 1)
             return;
 
         GameObject tobeInstantiate;
