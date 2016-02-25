@@ -13,9 +13,13 @@ public class UIManager : MonoBehaviour {
     public Text turnText;
     public Text timeText;
     public Text dieText;
+    public Text passText;
 
+    Animator passLevelAnim;
+    
     void Awake()
     {
+        passLevelAnim = GetComponent<Animator>();
     }
 
     void Update()
@@ -32,12 +36,25 @@ public class UIManager : MonoBehaviour {
 
     public void GameStart()
     {
+        screenCover.enabled = true;
+        levelText.enabled = true;
+        deathText.enabled = false;
+        turnText.enabled = false;
+        timeText.enabled = false;
+        dieText.enabled = false;
+        Invoke("HideUI", restartDelay);
+    }
+
+    public void GameNextLevel()
+    {
+        UpdateStats();
         deathText.enabled = false;
         turnText.enabled = false;
         timeText.enabled = false;
         dieText.enabled = false;
         screenCover.enabled = true;
-        levelText.enabled = true;
+        passLevelAnim.SetTrigger("ShowPassText");
+
         Invoke("HideUI", restartDelay);
     }
 
@@ -50,7 +67,6 @@ public class UIManager : MonoBehaviour {
         timeText.enabled = true;
         dieText.enabled = true;
         screenCover.enabled = true;
-        levelText.enabled = false;
         Invoke("HideUI", restartDelay);
     }
 

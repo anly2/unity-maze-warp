@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour {
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            uiManager.GameOver();
+            uiManager.GameNextLevel();
         }
     }
 
