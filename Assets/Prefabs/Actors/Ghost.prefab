@@ -12,46 +12,15 @@ GameObject:
   - 212: {fileID: 21255626}
   - 50: {fileID: 5020610}
   - 61: {fileID: 6112620}
-  - 114: {fileID: 11460898}
+  - 114: {fileID: 11439438}
   - 114: {fileID: 11471686}
   m_Layer: 0
-  m_Name: Player
-  m_TagString: Player
+  m_Name: Ghost
+  m_TagString: Friendly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &185934
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 450670}
-  - 20: {fileID: 2040034}
-  - 92: {fileID: 9282258}
-  - 124: {fileID: 12416992}
-  - 81: {fileID: 8168900}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &450670
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 185934}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 471544}
-  m_RootOrder: 0
 --- !u!4 &471544
 Transform:
   m_ObjectHideFlags: 1
@@ -61,44 +30,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4, y: 6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 450670}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!20 &2040034
-Camera:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 185934}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: .300000012
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 1
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: .0219999999
-  m_StereoMirrorMode: 0
 --- !u!50 &5020610
 Rigidbody2D:
   serializedVersion: 2
@@ -128,20 +62,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
---- !u!81 &8168900
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 185934}
-  m_Enabled: 1
---- !u!92 &9282258
-Behaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 185934}
-  m_Enabled: 1
 --- !u!95 &9510942
 Animator:
   serializedVersion: 3
@@ -159,7 +79,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11460898
+--- !u!114 &11439438
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -167,12 +87,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 135872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a39ce5157426c8940afdf274caaaf0bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e1aab3d39b24db438bd18bbf5cb33be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blockingLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
 --- !u!114 &11471686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,13 +107,6 @@ MonoBehaviour:
   chaserObject: {fileID: 172740, guid: abdb4d9490d9a8341ad3098025fbea12, type: 2}
   spawnTurnDelay: 3
   spawnPosition: {x: 0, y: 0, z: 0}
---- !u!124 &12416992
-Behaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 185934}
-  m_Enabled: 1
 --- !u!212 &21255626
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -219,7 +132,7 @@ SpriteRenderer:
   m_SortingLayerID: -919265121
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .139705896, g: .430426091, b: 1, a: .490196079}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -250,6 +163,26 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: blockingLayer.m_Bits
       value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Friendly
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.r
+      value: .139705896
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.g
+      value: .430426091
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.a
+      value: .490196079
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: chaserObject

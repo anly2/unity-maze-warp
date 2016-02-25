@@ -4,14 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Friendly
+  - Ghost
   - Enemy
+  - Friendly
+  - Lever
+  - Banana
+  - Bomb
+  - Door
   - Wall
   - Destructible
-  - Door
-  - Lever
-  - Bomb
-  - Banana
   layers:
   - Default
   - TransparentFX
@@ -22,9 +23,9 @@ TagManager:
   - 
   - 
   - Floor
-  - Wall
-  - Actor
-  - Door
+  - Blocking Layer
+  - 
+  - 
   - 
   - 
   - 

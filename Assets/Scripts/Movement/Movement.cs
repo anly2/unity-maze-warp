@@ -8,31 +8,22 @@ public class Movement : MonoBehaviour
     public LayerMask blockingLayer;
 
     private Rigidbody2D rb;
-    private List<Vector3> trajectory;
+    private Trajectory trajectory;
     private float requiredSpeed;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        trajectory = new List<Vector3>();
+        trajectory = new Trajectory();
 
         float moveTime = GameController.instance.turnDuration;
         requiredSpeed = 1f / moveTime;
     }
 
 
-    public IEnumerator<Vector3> GetTrajectory()
+    public Trajectory GetTrajectory()
     {
-        return CreateEnumerable().GetEnumerator();
-    }
-
-    private IEnumerable<Vector3> CreateEnumerable()
-    {
-        int i = 0;
-        while (true)
-        {
-            yield return trajectory[i++];
-        }
+        return trajectory;
     }
 
 
