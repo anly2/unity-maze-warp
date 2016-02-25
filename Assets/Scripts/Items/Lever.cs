@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Lever : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class Lever : MonoBehaviour {
         if (other.gameObject.tag != "Player")
             return;
 
+        TurnOnLeverAnim(gameObject);
 
         if (linkedDoor == null)
             return;
@@ -20,5 +22,14 @@ public class Lever : MonoBehaviour {
             linkedDoor.SetActive(false);
         else
             door.Open();
+    }
+
+    void TurnOnLeverAnim(GameObject gameObject)
+    {
+        if (gameObject.tag != "Lever")
+            return;
+
+        SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
+        sprite.flipX = enabled;
     }
 }

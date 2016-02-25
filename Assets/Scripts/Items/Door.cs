@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Door : MonoBehaviour {
 
-    public Sprite openState;
-    public Sprite closedState;
+    SpriteRenderer openState;
+    SpriteRenderer closedState;
 
     public bool startsClosed = true;
 
@@ -14,24 +14,22 @@ public class Door : MonoBehaviour {
         else
             Open();
 	}
+    void Awake()
+    {
+        closedState = GameObject.Find("DoorClosedTile").GetComponent<SpriteRenderer>();
+        openState = GameObject.Find("DoorOpenedTile").GetComponent<SpriteRenderer>();
+
+    }
 
     public void Close()
     {
-        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-
-        if (renderer == null)
-            return;
-
-        renderer.sprite = closedState;
+        closedState.enabled = true;
+        openState.enabled = false;
     }
 
     public void Open()
     {
-        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-
-        if (renderer == null)
-            return;
-
-        renderer.sprite = openState;
+        closedState.enabled = false;
+        openState.enabled = true;
     }
 }
