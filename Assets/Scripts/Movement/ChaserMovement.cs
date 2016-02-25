@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class MonkeyMovement : Movement, TurnBased {
+public class ChaserMovement : Movement, TurnBased {
     public IEnumerator<Vector3> target = null;
     
 	void Start () {
@@ -20,4 +20,14 @@ public class MonkeyMovement : Movement, TurnBased {
         
         Move(dest);
     }
+
+    /*
+    void OnTriggerEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            GameController.instance.warp();
+        }
+    }
+    */
 }

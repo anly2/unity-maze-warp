@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94eb428285019d747a77dc599ed6faaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monkeyObject: {fileID: 172740, guid: abdb4d9490d9a8341ad3098025fbea12, type: 2}
+  chaserObject: {fileID: 172740, guid: abdb4d9490d9a8341ad3098025fbea12, type: 2}
   spawnTurnDelay: 3
 --- !u!212 &21255626
 SpriteRenderer:
@@ -163,6 +163,10 @@ Prefab:
       propertyPath: blockingLayer.m_Bits
       value: 512
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: chaserObject
+      value: 
+      objectReference: {fileID: 172740, guid: abdb4d9490d9a8341ad3098025fbea12, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 135872}

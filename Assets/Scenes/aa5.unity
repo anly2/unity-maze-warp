@@ -1780,11 +1780,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 471544, guid: 89be6ec96bd448b489c44e5c196f69c5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 471544, guid: 89be6ec96bd448b489c44e5c196f69c5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 471544, guid: 89be6ec96bd448b489c44e5c196f69c5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3066,6 +3066,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11465506, guid: ce4b76de0d397d24e81b07b211085056, type: 2}
+      propertyPath: playerSpawnPlaces.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 463724, guid: ce4b76de0d397d24e81b07b211085056, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3102,6 +3106,18 @@ Prefab:
       propertyPath: HUD
       value: 
       objectReference: {fileID: 1007885428}
+    - target: {fileID: 11465506, guid: ce4b76de0d397d24e81b07b211085056, type: 2}
+      propertyPath: playerSpawnPlaces.Array.data[0]
+      value: 
+      objectReference: {fileID: 1820080194}
+    - target: {fileID: 11465506, guid: ce4b76de0d397d24e81b07b211085056, type: 2}
+      propertyPath: playerSpawnPlaces.Array.data[1]
+      value: 
+      objectReference: {fileID: 1197207427}
+    - target: {fileID: 11465506, guid: ce4b76de0d397d24e81b07b211085056, type: 2}
+      propertyPath: ghostObject
+      value: 
+      objectReference: {fileID: 135872, guid: 12b69ed46330fda4c8b2789e6fbb93f4, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce4b76de0d397d24e81b07b211085056, type: 2}
   m_IsPrefabParent: 0

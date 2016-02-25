@@ -4,11 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Friendly
+  - Ghost
   - Enemy
-  - Wall
-  - Destructible
-  - Pickup
+  - Friendly
   layers:
   - Default
   - TransparentFX
