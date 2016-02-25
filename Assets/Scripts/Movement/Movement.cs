@@ -13,9 +13,7 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         trajectory = new List<Vector3>();
-    }
 
-    void Start() {
         float moveTime = GameController.instance.turnDuration;
         requiredSpeed = 1f / moveTime;
     }
