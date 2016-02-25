@@ -6,12 +6,13 @@ public class Lever : MonoBehaviour {
 
     public GameObject linkedDoor;
 
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag != "Player")
             return;
 
-        LeverAnim();
+        Toggle();
             
         if (linkedDoor == null)
             return;
@@ -24,9 +25,9 @@ public class Lever : MonoBehaviour {
             door.Open();
     }
 
-    void LeverAnim()
+    void Toggle()
     {
-        SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
-        sprite.flipX = enabled;
+        //flip X
+        //FIXME the code did not work
     }
 }

@@ -7,6 +7,12 @@ TagManager:
   - Ghost
   - Enemy
   - Friendly
+  - Lever
+  - Banana
+  - Bomb
+  - Door
+  - Wall
+  - Destructible
   layers:
   - Default
   - TransparentFX
@@ -17,9 +23,9 @@ TagManager:
   - 
   - 
   - Floor
-  - Wall
-  - Actor
-  - Door
+  - Blocking Layer
+  - 
+  - 
   - 
   - 
   - 
