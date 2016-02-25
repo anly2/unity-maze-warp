@@ -56,6 +56,11 @@ public class GameController : MonoBehaviour {
         return turnListeners.Remove(listener);
     }
     
+
+    public bool TurnInProgress()
+    {
+        return turnInProgress;
+    }
     
     public bool TakeTurn()
     {
