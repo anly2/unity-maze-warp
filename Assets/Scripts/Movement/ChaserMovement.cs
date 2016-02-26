@@ -9,6 +9,10 @@ public class ChaserMovement : Movement, TurnBased {
 	void Start () {
         GameController.instance.AddTurnBasedListener(this);
 	}
+    void OnDestroy()
+    {
+        GameController.instance.RemoveTurnBasedListener(this);
+    }
 
     void TurnBased.Turn()
     {

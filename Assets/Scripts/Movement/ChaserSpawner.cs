@@ -18,6 +18,10 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
     void Start () {
         GameController.instance.AddTurnBasedListener(this);
 	}
+    void OnDestroy()
+    {
+        GameController.instance.RemoveTurnBasedListener(this);
+    }
 
     void TurnBased.Turn()
     {
@@ -31,13 +35,12 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
 
     void Dispose()
     {
-        GameController.instance.RemoveTurnBasedListener(this);
+        //GameController.instance.RemoveTurnBasedListener(this);
         Destroy(this);
     }
 
     public void SpawnChaser()
     {
-        Debug.Log(""+chaserObject+" "+spawnPosition);
         GameObject chaser = Instantiate(chaserObject, spawnPosition, Quaternion.identity) as GameObject;
         chaser.transform.parent = gameObject.transform.parent;
 

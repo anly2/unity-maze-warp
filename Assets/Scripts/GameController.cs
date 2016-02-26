@@ -9,11 +9,14 @@ public class GameController : MonoBehaviour {
     public float turnDuration;
     public List<Transform> playerSpawnPlaces;
     public GameObject ghostObject;
+    public float actorFadeOutDuration = 1;
 
     private bool turnInProgress;
     private List<TurnBased> turnListeners;
     private List<GhostInfo> ghostData;
     private IEnumerator<Vector3> playerSpawnPoints;
+
+    private GameObject player; //for easy access
 
     class GhostInfo
     {
@@ -47,7 +50,8 @@ public class GameController : MonoBehaviour {
         playerSpawnPoints = GetPlayerSpawnsEnumeration();
         playerSpawnPoints.MoveNext();
 
-        GameObject.FindWithTag("Player").transform.position = playerSpawnPoints.Current;
+        player = GameObject.FindWithTag("Player");
+        player.transform.position = playerSpawnPoints.Current;
     }
 
     IEnumerator<Vector3> GetPlayerSpawnsEnumeration()
@@ -109,12 +113,12 @@ public class GameController : MonoBehaviour {
 
         FlashRed();
         
-        AddGhost(1);
+        AddGhost(1); //#! death count +1
 
         //#!increment death count
         playerSpawnPoints.MoveNext();
 
-        ResetActors();
+        StartCoroutine(ResetActors());
         StartGhostSpawners();
 
         turnInProgress = false;
@@ -122,17 +126,68 @@ public class GameController : MonoBehaviour {
 
     void FlashRed() { } //UI Manager?
 
-    void ResetActors()
+    IEnumerator ResetActors()
     {
         //fade out player, ghosts, monkeys
-        //reset player position
-        //destroy? all the rest
+        List<GameObject> actors = GetActors();
+        foreach (GameObject actor in actors)
+            StartCoroutine(FadeOut(actor));
+
+        yield return new WaitForSeconds(actorFadeOutDuration);
+        
+        //reset player
+        player.transform.position = playerSpawnPoints.Current;
+        //color
+        SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
+        Color c = playerSprite.color;
+        c.a = 1;
+        playerSprite.color = c;
+
+        //destroy all the rest
+        actors.Remove(player);
+        foreach (GameObject actor in actors)
+            Destroy(actor);
+
+        yield break;
+    }
+    List<GameObject> GetActors()
+    {
+        List<GameObject> actors = new List<GameObject>();
+        actors.Add(player);
+        actors.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        actors.AddRange(GameObject.FindGameObjectsWithTag("Ghost"));
+        return actors;
+    }
+    IEnumerator FadeOut(GameObject actor)
+    {
+        SpriteRenderer sprite = actor.GetComponent<SpriteRenderer>();
+
+        if (sprite == null)
+            yield break;
+
+
+        Color color = sprite.color;
+        color.a = 0;
+        sprite.color = color;
+        yield break;
+        /*
+        Color startColor = sprite.color;
+        Color endColor = startColor;
+        endColor.a = 0;
+        Color currentColor = startColor;
+        float speed = 1 / actorFadeOutDuration;
+
+        while (currentColor.a > float.Epsilon)
+        {
+            sprite.color = Color.Lerp(startColor, endColor, speed*Time.deltaTime);
+            yield return null;
+        }
+        */
     }
 
     void AddGhost(int turnDelay)
     {
-        GameObject player = GameObject.FindWithTag("Player");
-        Trajectory targetTrajectory = player.GetComponent<Movement>().GetTrajectory();
+        Trajectory targetTrajectory = player.GetComponent<Movement>().GetTrajectory().Clone();
 
         Vector3 spawnPoint = playerSpawnPoints.Current;
 
