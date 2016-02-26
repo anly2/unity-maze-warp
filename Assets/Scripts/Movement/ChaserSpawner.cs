@@ -10,10 +10,13 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
     public Vector3 spawnPosition;
     public Trajectory targetTrajectory;
 
+    void Awake ()
+    {
+        spawnPosition = gameObject.transform.position;
+    }
+
     void Start () {
         GameController.instance.AddTurnBasedListener(this);
-
-        spawnPosition = gameObject.transform.position;
 	}
 
     void TurnBased.Turn()
@@ -34,6 +37,7 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
 
     public void SpawnChaser()
     {
+        Debug.Log(""+chaserObject+" "+spawnPosition);
         GameObject chaser = Instantiate(chaserObject, spawnPosition, Quaternion.identity) as GameObject;
         chaser.transform.parent = gameObject.transform.parent;
 
