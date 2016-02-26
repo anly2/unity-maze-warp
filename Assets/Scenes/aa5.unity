@@ -145,7 +145,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1001 &23619812
 Prefab:
   m_ObjectHideFlags: 0
@@ -234,10 +234,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 671f21f73080f3546ada34523ea694b1, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &58517677 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
-  m_PrefabInternal: {fileID: 1646603819}
 --- !u!1 &93266632 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 192750, guid: f3c7391d06980d74a893051a53a9c3c2, type: 2}
@@ -970,6 +966,7 @@ Transform:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
@@ -1057,6 +1054,8 @@ CanvasRenderer:
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
 =======
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
+=======
+>>>>>>> origin/master
 --- !u!1 &430191137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,17 +1082,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1419391994}
-  - {fileID: 58517677}
+  - {fileID: 798222058}
   - {fileID: 807177776}
   - {fileID: 498191283}
   - {fileID: 827281861}
   - {fileID: 319112414}
   - {fileID: 93266634}
   - {fileID: 538256635}
-  - {fileID: 1967394101}
-  - {fileID: 1457077868}
   - {fileID: 277044566}
   - {fileID: 342546343}
+  - {fileID: 1967394101}
+  - {fileID: 1457077868}
   - {fileID: 709537395}
   m_Father: {fileID: 447419514}
   m_RootOrder: 4
@@ -1588,10 +1587,57 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
   m_PrefabInternal: {fileID: 1106454879}
+--- !u!1001 &721829831
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 430191138}
+    m_Modifications:
+    - target: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 123666, guid: d38a92829736bf349b5ccca245d34548, type: 2}
+      propertyPath: m_Name
+      value: Wall (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d38a92829736bf349b5ccca245d34548, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &742104023 stripped
 Transform:
   m_PrefabParentObject: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
   m_PrefabInternal: {fileID: 645931344}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1648,6 +1694,8 @@ RectTransform:
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
 =======
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
+=======
+>>>>>>> origin/master
 --- !u!4 &754647473 stripped
 Transform:
   m_PrefabParentObject: {fileID: 413160, guid: 671f21f73080f3546ada34523ea694b1, type: 2}
@@ -1702,6 +1750,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d38a92829736bf349b5ccca245d34548, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &798222058 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
+  m_PrefabInternal: {fileID: 721829831}
 --- !u!4 &806860116 stripped
 Transform:
   m_PrefabParentObject: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
@@ -1710,6 +1762,7 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
   m_PrefabInternal: {fileID: 1149777569}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1819,6 +1872,8 @@ CanvasRenderer:
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
 =======
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
+=======
+>>>>>>> origin/master
 --- !u!4 &823518836 stripped
 Transform:
   m_PrefabParentObject: {fileID: 413160, guid: 671f21f73080f3546ada34523ea694b1, type: 2}
@@ -1964,7 +2019,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 123666, guid: d38a92829736bf349b5ccca245d34548, type: 2}
       propertyPath: m_Name
@@ -1973,6 +2028,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d38a92829736bf349b5ccca245d34548, type: 2}
   m_IsPrefabParent: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -2082,6 +2138,8 @@ CanvasRenderer:
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
 =======
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
+=======
+>>>>>>> origin/master
 --- !u!1001 &995814556
 Prefab:
   m_ObjectHideFlags: 0
@@ -2119,7 +2177,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 420258, guid: 111b791f02913b04dad80cff839174eb, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 121050, guid: 111b791f02913b04dad80cff839174eb, type: 2}
       propertyPath: m_Name
@@ -2135,7 +2193,7 @@ Prefab:
       objectReference: {fileID: 93266632}
     - target: {fileID: 420258, guid: 111b791f02913b04dad80cff839174eb, type: 2}
       propertyPath: m_LocalScale.x
-      value: 1.544149
+      value: 1.54414904
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 111b791f02913b04dad80cff839174eb, type: 2}
@@ -2144,6 +2202,7 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 413160, guid: 671f21f73080f3546ada34523ea694b1, type: 2}
   m_PrefabInternal: {fileID: 1548307139}
+<<<<<<< HEAD
 --- !u!1 &1007885428
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,6 +2361,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+=======
+>>>>>>> origin/master
 --- !u!1001 &1017054248
 Prefab:
   m_ObjectHideFlags: 0
@@ -2710,7 +2771,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 413160, guid: 671f21f73080f3546ada34523ea694b1, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 162296, guid: 671f21f73080f3546ada34523ea694b1, type: 2}
       propertyPath: m_Name
@@ -2933,6 +2994,7 @@ Prefab:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
@@ -3039,6 +3101,8 @@ CanvasRenderer:
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
 =======
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
+=======
+>>>>>>> origin/master
 --- !u!1001 &1274073553
 Prefab:
   m_ObjectHideFlags: 0
@@ -3315,7 +3379,7 @@ Prefab:
     - target: {fileID: 11465506, guid: ce4b76de0d397d24e81b07b211085056, type: 2}
       propertyPath: HUD
       value: 
-      objectReference: {fileID: 1007885428}
+      objectReference: {fileID: 0}
     - target: {fileID: 11465506, guid: ce4b76de0d397d24e81b07b211085056, type: 2}
       propertyPath: playerSpawnPlaces.Array.data[0]
       value: 
@@ -3839,6 +3903,7 @@ Prefab:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
@@ -3941,6 +4006,8 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d38a92829736bf349b5ccca245d34548, type: 2}
   m_IsPrefabParent: 0
+=======
+>>>>>>> origin/master
 --- !u!1001 &1652709261
 Prefab:
   m_ObjectHideFlags: 0
@@ -4083,7 +4150,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     m_RemovedComponents: []
+=======
+    - target: {fileID: 11462082, guid: 6c337a6fa502acd4ab8d462df8911c5f, type: 2}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11462082, guid: 6c337a6fa502acd4ab8d462df8911c5f, type: 2}
+>>>>>>> origin/master
   m_ParentPrefab: {fileID: 100100000, guid: 6c337a6fa502acd4ab8d462df8911c5f, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1727180268 stripped
@@ -4094,6 +4170,7 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
   m_PrefabInternal: {fileID: 243254014}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -4203,6 +4280,8 @@ CanvasRenderer:
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
 =======
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
+=======
+>>>>>>> origin/master
 --- !u!1001 &1758808743
 Prefab:
   m_ObjectHideFlags: 0
@@ -4386,7 +4465,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 123666, guid: d38a92829736bf349b5ccca245d34548, type: 2}
       propertyPath: m_Name
@@ -4602,6 +4681,7 @@ Prefab:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
@@ -4783,6 +4863,8 @@ CanvasRenderer:
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
 =======
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
+=======
+>>>>>>> origin/master
 --- !u!4 &1967394101 stripped
 Transform:
   m_PrefabParentObject: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
@@ -4886,6 +4968,7 @@ Transform:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
@@ -4939,6 +5022,8 @@ RectTransform:
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
 =======
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
+=======
+>>>>>>> origin/master
 --- !u!1001 &2061406043
 Prefab:
   m_ObjectHideFlags: 0
@@ -4989,6 +5074,7 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 405354, guid: d38a92829736bf349b5ccca245d34548, type: 2}
   m_PrefabInternal: {fileID: 669699481}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -5098,3 +5184,5 @@ CanvasRenderer:
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
 =======
 >>>>>>> parent of 7af3292... Finished post-game setup and exit collider
+=======
+>>>>>>> origin/master
