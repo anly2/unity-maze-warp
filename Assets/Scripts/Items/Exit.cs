@@ -5,13 +5,6 @@ using System;
 public class Exit : MonoBehaviour {
 
     public float restartDelay = 0.3f;
-
-    UIManager uiManager;
-
-    void Awake()
-    {
-        uiManager = GameObject.Find("HUP").GetComponent<UIManager>();
-    }
     
 
     void OnTriggerEnter2D(Collider2D other)
@@ -24,7 +17,7 @@ public class Exit : MonoBehaviour {
 
     void ReachNextLevel()
     {
-        uiManager.GameNextLevel();
+        //uiManager.GameNextLevel();
     }
 
 }
