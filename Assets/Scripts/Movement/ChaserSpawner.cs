@@ -54,7 +54,7 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
             Movement movement = gameObject.GetComponent<Movement>();
 
             if (movement != null)
-                targetTrajectory = movement.GetTrajectory();
+                targetTrajectory = movement.trajectory;
         }
         
         chaserMovement.target = targetTrajectory.GetEnumaration();

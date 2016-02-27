@@ -7,25 +7,13 @@ public class Movement : MonoBehaviour
 {
     public LayerMask blockingLayer;
 
-    private Rigidbody2D rb;
-    private Trajectory trajectory;
-    private float requiredSpeed;
+    [HideInInspector]
+    public Trajectory trajectory { get; private set; }
 
-    void Awake()
+    public Movement() : base()
     {
-        rb = GetComponent<Rigidbody2D>();
         trajectory = new Trajectory();
-
-        float moveTime = GameController.instance.turnDuration;
-        requiredSpeed = 1f / moveTime;
     }
-
-
-    public Trajectory GetTrajectory()
-    {
-        return trajectory;
-    }
-
 
     public void Move(Vector3 dest)
     {
@@ -33,34 +21,23 @@ public class Movement : MonoBehaviour
             return;
 
         trajectory.Add(dest);
-        StartCoroutine(SmoothMovement(dest));
+        SmoothMovement(dest);
     }
 
     public bool CanMove(Vector3 dest)
     {
-        RaycastHit2D hit = Physics2D.Linecast(rb.position, dest, blockingLayer);
-
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, dest, blockingLayer);
         return (hit.transform == null);
     }
 
-    IEnumerator SmoothMovement(Vector3 end)
+    Coroutine SmoothMovement(Vector3 end)
     {
-        float distance = CalcuEuclideanDistance(transform.position, end);
-        while (distance > float.Epsilon)
-        {
-            Vector3 newPos = Vector3.MoveTowards(transform.position, end, requiredSpeed * Time.deltaTime);
-            rb.MovePosition(newPos);
-            distance = CalcuEuclideanDistance(newPos, end);
-            yield return null;
-        }
-    }
+        Vector3 start = transform.position;
+        float distance = Vector3.Distance(start, end);
 
-    float CalcuEuclideanDistance(Vector3 start, Vector3 end)
-    {
-        return  Mathf.Sqrt(
-                Mathf.Pow((end.x - start.x), 2) + 
-                Mathf.Pow((end.y - start.y), 2) + 
-                Mathf.Pow((end.z - start.z), 2)
-                );
+        return StartCoroutine(new Animation(delegate (float p)
+        {
+            transform.position = Vector3.MoveTowards(start, end, p * distance);
+        }, GameController.instance.turnDuration));
     }
 }

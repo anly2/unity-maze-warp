@@ -173,8 +173,7 @@ public class GameController : MonoBehaviour {
     {
         //position
         player.transform.position = playerSpawnPoints.Current;
-        Trajectory traj = player.GetComponent<PlayerMovement>().GetTrajectory();
-        if (traj != null) traj.Clear();
+        player.GetComponent<PlayerMovement>().trajectory.Clear();
         
         //color
         SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
@@ -190,7 +189,7 @@ public class GameController : MonoBehaviour {
 
     void AddGhost(int turnDelay)
     {
-        Trajectory targetTrajectory = player.GetComponent<Movement>().GetTrajectory().Clone();
+        Trajectory targetTrajectory = player.GetComponent<Movement>().trajectory.Clone();
 
         Vector3 spawnPoint = playerSpawnPoints.Current;
 
