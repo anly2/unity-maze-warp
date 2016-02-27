@@ -8,10 +8,12 @@ public class GameController : MonoBehaviour {
 
     public float turnDuration;
     public List<Transform> playerSpawnPlaces;
+    public int monkeySpawnTurnDelay = 3;
+    public GameObject monkeyObject;
     public GameObject ghostObject;
     public float actorFadeOutDuration = 1;
 
-    private bool turnInProgress;
+    private bool turnInProgress = true;
     private List<TurnBased> turnListeners;
     private List<GhostInfo> ghostData;
     private IEnumerator<Vector3> playerSpawnPoints;
@@ -44,14 +46,16 @@ public class GameController : MonoBehaviour {
 
         DontDestroyOnLoad(gameObject);
 
-        turnInProgress = false;
         turnListeners = new List<TurnBased>();
         ghostData = new List<GhostInfo>();
+
         playerSpawnPoints = GetPlayerSpawnsEnumeration();
         playerSpawnPoints.MoveNext();
 
         player = GameObject.FindWithTag("Player");
-        player.transform.position = playerSpawnPoints.Current;
+        ResetPlayer();
+
+        turnInProgress = false;
     }
 
     IEnumerator<Vector3> GetPlayerSpawnsEnumeration()
@@ -134,14 +138,9 @@ public class GameController : MonoBehaviour {
             StartCoroutine(FadeOut(actor));
 
         yield return new WaitForSeconds(actorFadeOutDuration);
-        
+
         //reset player
-        player.transform.position = playerSpawnPoints.Current;
-        //color
-        SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
-        Color c = playerSprite.color;
-        c.a = 1;
-        playerSprite.color = c;
+        ResetPlayer();
 
         //destroy all the rest
         actors.Remove(player);
@@ -183,6 +182,25 @@ public class GameController : MonoBehaviour {
             yield return null;
         }
         */
+    }
+
+    void ResetPlayer()
+    {
+        //position
+        player.transform.position = playerSpawnPoints.Current;
+        Trajectory traj = player.GetComponent<PlayerMovement>().GetTrajectory();
+        if (traj != null) traj.Clear();
+        
+        //color
+        SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
+        Color c = playerSprite.color;
+        c.a = 1;
+        playerSprite.color = c;
+
+        //chaser spawner
+        ChaserSpawner spawner = player.AddComponent<ChaserSpawner>() as ChaserSpawner;
+        spawner.chaserObject = monkeyObject;
+        spawner.spawnTurnDelay = monkeySpawnTurnDelay;
     }
 
     void AddGhost(int turnDelay)

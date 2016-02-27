@@ -1987,13 +1987,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 6112620, guid: 89be6ec96bd448b489c44e5c196f69c5, type: 2}
       propertyPath: m_Size.x
-      value: 0.5
+      value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 6112620, guid: 89be6ec96bd448b489c44e5c196f69c5, type: 2}
       propertyPath: m_Size.y
-      value: 0.5
+      value: .5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 89be6ec96bd448b489c44e5c196f69c5, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &894441946 stripped
@@ -3266,6 +3267,10 @@ Prefab:
       propertyPath: ghostObject
       value: 
       objectReference: {fileID: 135872, guid: 12b69ed46330fda4c8b2789e6fbb93f4, type: 2}
+    - target: {fileID: 11465506, guid: ce4b76de0d397d24e81b07b211085056, type: 2}
+      propertyPath: monkeyObject
+      value: 
+      objectReference: {fileID: 172740, guid: abdb4d9490d9a8341ad3098025fbea12, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce4b76de0d397d24e81b07b211085056, type: 2}
   m_IsPrefabParent: 0
