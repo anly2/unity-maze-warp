@@ -136,7 +136,7 @@ public class GameController : MonoBehaviour {
         //fade out player, ghosts, monkeys
         List<GameObject> actors = GetActors();
         foreach (GameObject actor in actors)
-            StartCoroutine(FadeOut(actor));
+            FadeOut(actor);
 
         yield return new WaitForSeconds(actorFadeOutDuration);
 
@@ -158,20 +158,20 @@ public class GameController : MonoBehaviour {
         actors.AddRange(GameObject.FindGameObjectsWithTag("Ghost"));
         return actors;
     }
-    IEnumerator FadeOut(GameObject actor)
+    void FadeOut(GameObject actor)
     {
         SpriteRenderer sprite = actor.GetComponent<SpriteRenderer>();
 
         if (sprite == null)
-            return Animation.Empty;
+            return;
 
         Color startColor = sprite.color;
         Color endColor = startColor;
         endColor.a = 0;
 
-        return new Animation(delegate (float p) {
+        StartCoroutine(new Animation(delegate (float p) {
             sprite.color = Color.Lerp(startColor, endColor, p);
-        }, actorFadeOutDuration);
+        }, actorFadeOutDuration));
     }
 
     void ResetPlayer()

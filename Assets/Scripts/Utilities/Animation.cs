@@ -13,9 +13,9 @@ public class Animation : IEnumerator {
         kernel = GetEnumeration(setter, duration);
     }
 
-    public static IEnumerator Animate(Setter setter, float duration)
+    public static void Animate(Setter setter, float duration)
     {
-        return GetEnumeration(setter, duration);
+        new MonoBehaviour().StartCoroutine(GetEnumeration(setter, duration));
     }
     
     public static IEnumerator Empty { get { yield break; } }
