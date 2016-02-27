@@ -23,6 +23,12 @@ public class Animation : IEnumerator {
 
     private static IEnumerator GetEnumeration(Setter setter, float duration)
     {
+        if (duration < Mathf.Epsilon)
+        {
+            setter(1f);
+            yield break;
+        }
+
         float p = 0f;
         float speed = 1f / duration;
 
