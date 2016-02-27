@@ -115,9 +115,9 @@ public class GameManager : MonoBehaviour {
         CancelInvoke("EndTurn");
         TurnInProgress = true;
 
-        FlashRed();
-        
-        AddGhost(1); //#! death count +1
+        UIManager.instance.Hit();
+        int delay = LevelManager.instance.Stats.DeathCount++;
+        AddGhost(delay);
 
         //#!increment death count
         playerSpawnPoints.MoveNext();

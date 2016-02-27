@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour {
 
     public void Hit()
     {
-        
+        animator.SetTrigger("Hit");
     }
 
 
@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour {
     public void ShowPreScreen(string message)
     {
         vMessage.text = message;
-        animator.SetTrigger("Next Level");
+        animator.SetTrigger("Pre-Screen Ready");
     }
 
 
@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour {
 
         UpdateStats();
 
-        animator.SetTrigger("Post Screen");
+        animator.SetTrigger("Post-Screen Ready");
     }
 
     void UpdateStats()

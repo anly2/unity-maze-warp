@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Flash Red
+  m_Name: In Transit
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,12 +19,12 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 10
       - time: 1
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 10
@@ -76,12 +76,12 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: .5
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 10
       - time: 1
-        value: .5
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 10
@@ -152,12 +152,12 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 0
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 10
       - time: 1
-        value: 0
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 10
@@ -396,7 +396,7 @@ AnimationClip:
     classID: 114
     script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_PPtrCurves: []
-  m_SampleRate: 12
+  m_SampleRate: 1
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -546,12 +546,12 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 10
       - time: 1
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 10
@@ -603,12 +603,12 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: .5
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 10
       - time: 1
-        value: .5
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 10
@@ -679,12 +679,12 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 0
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 10
       - time: 1
-        value: 0
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 10
