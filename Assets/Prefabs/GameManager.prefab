@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 463724}
   - 114: {fileID: 11465506}
   m_Layer: 0
-  m_Name: GameController
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,13 +40,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnDuration: .25
+  playerSpawnPlaces: []
+  monkeySpawnTurnDelay: 3
+  monkeyObject: {fileID: 172740, guid: abdb4d9490d9a8341ad3098025fbea12, type: 2}
+  ghostObject: {fileID: 135872, guid: 12b69ed46330fda4c8b2789e6fbb93f4, type: 2}
+  actorFadeOutDuration: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: playerSpawnPlaces.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 186044}

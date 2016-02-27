@@ -38,6 +38,6 @@ public class Movement : MonoBehaviour
         return StartCoroutine(new Animation(delegate (float p)
         {
             transform.position = Vector3.MoveTowards(start, end, p * distance);
-        }, GameController.instance.turnDuration));
+        }, GameManager.instance.turnDuration));
     }
 }

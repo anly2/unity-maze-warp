@@ -7,11 +7,11 @@ public class ChaserMovement : Movement, TurnBased {
     public IEnumerator<Vector3> target = null;
     
 	void Start () {
-        GameController.instance.AddTurnBasedListener(this);
+        GameManager.instance.AddTurnBasedListener(this);
 	}
     void OnDestroy()
     {
-        GameController.instance.RemoveTurnBasedListener(this);
+        GameManager.instance.RemoveTurnBasedListener(this);
     }
 
     void TurnBased.Turn()

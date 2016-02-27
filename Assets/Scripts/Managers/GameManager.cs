@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
-using System.Linq;
 
-public class GameController : MonoBehaviour {
-    public static GameController instance = null;
+public class GameManager : MonoBehaviour {
+    public static GameManager instance = null;
 
     public float turnDuration;
     public List<Transform> playerSpawnPlaces;
