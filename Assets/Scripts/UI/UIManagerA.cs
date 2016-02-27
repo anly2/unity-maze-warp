@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System;
 
-public class UIManager : MonoBehaviour {
+public class UIManagerA : MonoBehaviour {
 
     public float restartDelay = 2f;
 
