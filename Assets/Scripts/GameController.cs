@@ -109,6 +109,7 @@ public class GameController : MonoBehaviour {
     public void Warp()
     {
         Debug.Log("DEAD -- SHOULD WARP THE SCENE");
+        CancelInvoke("EndTurn");
         TurnInProgress = true;
 
         FlashRed();
@@ -118,10 +119,9 @@ public class GameController : MonoBehaviour {
         //#!increment death count
         playerSpawnPoints.MoveNext();
 
-        StartCoroutine(ResetActors());
-        StartGhostSpawners();
-
-        TurnInProgress = false;
+        StartCoroutine(ResetActors()
+            .Then(() => StartGhostSpawners())
+            .Then(() => TurnInProgress = false));
     }
 
     void FlashRed() { } //UI Manager?
