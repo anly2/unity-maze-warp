@@ -22,6 +22,10 @@ public class LevelManager : MonoBehaviour {
         Stats = new Statistics();
     }
 
+    void Start() {
+        UIManager.instance.ShowPreScreen();
+    }
+
     public class Statistics
     {
         public int DeathCount = 0;
