@@ -29,7 +29,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: 0.25
+    heightScale: .25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -50,11 +50,11 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
@@ -70,15 +70,8 @@ TextureImporter:
         width: 58
         height: 63
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -25, y: 31.5}
-        - {x: -29, y: 19.5}
-        - {x: -29, y: -31.5}
-        - {x: 29, y: -31.5}
-        - {x: 29, y: 17.5}
-        - {x: 22, y: 31.5}
     - name: __dungeon_of_sorrow_gate_by_nicnubill-d6qnag9_1
       rect:
         serializedVersion: 2
@@ -87,15 +80,8 @@ TextureImporter:
         width: 63
         height: 63
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -27.5, y: 31.5}
-        - {x: -31.5, y: 16.5}
-        - {x: -31.5, y: -31.5}
-        - {x: 30.5, y: -31.5}
-        - {x: 30.5, y: 16.5}
-        - {x: 21.5, y: 31.5}
     - name: __dungeon_of_sorrow_gate_by_nicnubill-d6qnag9_2
       rect:
         serializedVersion: 2
@@ -104,15 +90,8 @@ TextureImporter:
         width: 58
         height: 63
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -25, y: 31.5}
-        - {x: -29, y: 19.5}
-        - {x: -29, y: -31.5}
-        - {x: 29, y: -31.5}
-        - {x: 29, y: 17.5}
-        - {x: 22, y: 31.5}
     - name: __dungeon_of_sorrow_gate_by_nicnubill-d6qnag9_3
       rect:
         serializedVersion: 2
@@ -121,15 +100,8 @@ TextureImporter:
         width: 58
         height: 63
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -25, y: 31.5}
-        - {x: -29, y: 19.5}
-        - {x: -29, y: -31.5}
-        - {x: 29, y: -31.5}
-        - {x: 29, y: 17.5}
-        - {x: 22, y: 31.5}
     - name: __dungeon_of_sorrow_gate_by_nicnubill-d6qnag9_4
       rect:
         serializedVersion: 2
@@ -138,15 +110,8 @@ TextureImporter:
         width: 63
         height: 63
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -24.5, y: 31.5}
-        - {x: -31.5, y: 13.5}
-        - {x: -31.5, y: -31.5}
-        - {x: 31.5, y: -31.5}
-        - {x: 31.5, y: 15.5}
-        - {x: 15.5, y: 31.5}
     - name: __dungeon_of_sorrow_gate_by_nicnubill-d6qnag9_5
       rect:
         serializedVersion: 2
@@ -155,15 +120,8 @@ TextureImporter:
         width: 58
         height: 63
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -25, y: 31.5}
-        - {x: -29, y: 19.5}
-        - {x: -29, y: -31.5}
-        - {x: 29, y: -31.5}
-        - {x: 29, y: 17.5}
-        - {x: 22, y: 31.5}
     - name: __dungeon_of_sorrow_gate_by_nicnubill-d6qnag9_6
       rect:
         serializedVersion: 2
@@ -172,15 +130,8 @@ TextureImporter:
         width: 58
         height: 63
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -25, y: 31.5}
-        - {x: -29, y: 19.5}
-        - {x: -29, y: -31.5}
-        - {x: 29, y: -31.5}
-        - {x: 29, y: 17.5}
-        - {x: 22, y: 31.5}
     - name: __dungeon_of_sorrow_gate_by_nicnubill-d6qnag9_7
       rect:
         serializedVersion: 2
@@ -189,15 +140,8 @@ TextureImporter:
         width: 63
         height: 63
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -24.5, y: 31.5}
-        - {x: -31.5, y: 13.5}
-        - {x: -31.5, y: -31.5}
-        - {x: 31.5, y: -31.5}
-        - {x: 31.5, y: 15.5}
-        - {x: 15.5, y: 31.5}
     - name: __dungeon_of_sorrow_gate_by_nicnubill-d6qnag9_8
       rect:
         serializedVersion: 2
@@ -206,15 +150,8 @@ TextureImporter:
         width: 58
         height: 63
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -25, y: 31.5}
-        - {x: -29, y: 19.5}
-        - {x: -29, y: -31.5}
-        - {x: 29, y: -31.5}
-        - {x: 29, y: 17.5}
-        - {x: 22, y: 31.5}
     - name: __dungeon_of_sorrow_gate_by_nicnubill-d6qnag9_9
       rect:
         serializedVersion: 2
@@ -223,15 +160,8 @@ TextureImporter:
         width: 58
         height: 63
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -25, y: 31.5}
-        - {x: -29, y: 19.5}
-        - {x: -29, y: -31.5}
-        - {x: 29, y: -31.5}
-        - {x: 29, y: 17.5}
-        - {x: 22, y: 31.5}
     - name: __dungeon_of_sorrow_gate_by_nicnubill-d6qnag9_10
       rect:
         serializedVersion: 2
@@ -240,15 +170,8 @@ TextureImporter:
         width: 63
         height: 63
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -24.5, y: 31.5}
-        - {x: -31.5, y: 13.5}
-        - {x: -31.5, y: -31.5}
-        - {x: 31.5, y: -31.5}
-        - {x: 31.5, y: 15.5}
-        - {x: 15.5, y: 31.5}
     - name: __dungeon_of_sorrow_gate_by_nicnubill-d6qnag9_11
       rect:
         serializedVersion: 2
@@ -257,16 +180,8 @@ TextureImporter:
         width: 58
         height: 63
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -25, y: 31.5}
-        - {x: -29, y: 19.5}
-        - {x: -29, y: -31.5}
-        - {x: 29, y: -31.5}
-        - {x: 29, y: 17.5}
-        - {x: 22, y: 31.5}
-    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
