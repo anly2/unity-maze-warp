@@ -14,7 +14,7 @@ public class PlayerMovement : Movement {
         {
             Vector3 dest = gameObject.transform.position + new Vector3(horizontal, vertical);
             
-            if (GameController.instance.TurnInProgress())
+            if (GameController.instance.TurnInProgress)
                 return;
             
             if (!CanMove(dest))

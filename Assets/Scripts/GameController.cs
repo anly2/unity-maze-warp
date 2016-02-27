@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour {
     public GameObject ghostObject;
     public float actorFadeOutDuration = 1;
 
-    private bool turnInProgress = true;
+    public bool TurnInProgress { get; private set; }
     private List<TurnBased> turnListeners;
     private List<GhostInfo> ghostData;
     private IEnumerator<Vector3> playerSpawnPoints;
@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
+        TurnInProgress = true;
 
         DontDestroyOnLoad(gameObject);
 
@@ -56,7 +57,7 @@ public class GameController : MonoBehaviour {
         player = GameObject.FindWithTag("Player");
         ResetPlayer();
 
-        turnInProgress = false;
+        TurnInProgress = false;
     }
 
     IEnumerator<Vector3> GetPlayerSpawnsEnumeration()
@@ -77,18 +78,12 @@ public class GameController : MonoBehaviour {
         return turnListeners.Remove(listener);
     }
     
-
-    public bool TurnInProgress()
-    {
-        return turnInProgress;
-    }
-    
     public bool TakeTurn()
     {
-        if (turnInProgress)
+        if (TurnInProgress)
             return false;
 
-        turnInProgress = true;
+        TurnInProgress = true;
         StartCoroutine(NotifyTurnListeners());
         Invoke("EndTurn", turnDuration);
         return true;
@@ -96,7 +91,7 @@ public class GameController : MonoBehaviour {
 
     void EndTurn()
     {
-        turnInProgress = false;
+        TurnInProgress = false;
     }
 
     IEnumerator NotifyTurnListeners()
@@ -106,15 +101,15 @@ public class GameController : MonoBehaviour {
             listener.Turn();
         }
 
-        yield return 0;
+        yield break;
     }
 
 
     // Player was caught! Wrap the level back to starting positions
     public void Warp()
     {
-        turnInProgress = true;
         Debug.Log("DEAD -- SHOULD WARP THE SCENE");
+        TurnInProgress = true;
 
         FlashRed();
         
@@ -126,7 +121,7 @@ public class GameController : MonoBehaviour {
         StartCoroutine(ResetActors());
         StartGhostSpawners();
 
-        turnInProgress = false;
+        TurnInProgress = false;
     }
 
     void FlashRed() { } //UI Manager?
