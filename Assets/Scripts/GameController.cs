@@ -63,8 +63,14 @@ public class GameController : MonoBehaviour {
     IEnumerator<Vector3> GetPlayerSpawnsEnumeration()
     {
         IEnumerator<Transform> places = playerSpawnPlaces.GetEnumerator();
-        while (places.MoveNext())
-            yield return places.Current.position;
+
+        while (true)
+        {
+            while (places.MoveNext())
+                yield return places.Current.position;
+
+            places.Reset();
+        }
     }
 
 
@@ -108,7 +114,6 @@ public class GameController : MonoBehaviour {
     // Player was caught! Wrap the level back to starting positions
     public void Warp()
     {
-        Debug.Log("DEAD -- SHOULD WARP THE SCENE");
         CancelInvoke("EndTurn");
         TurnInProgress = true;
 
