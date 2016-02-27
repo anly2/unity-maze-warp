@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class GameController : MonoBehaviour {
     public static GameController instance = null;
@@ -162,26 +163,15 @@ public class GameController : MonoBehaviour {
         SpriteRenderer sprite = actor.GetComponent<SpriteRenderer>();
 
         if (sprite == null)
-            yield break;
+            return Animation.Empty;
 
-
-        Color color = sprite.color;
-        color.a = 0;
-        sprite.color = color;
-        yield break;
-        /*
         Color startColor = sprite.color;
         Color endColor = startColor;
         endColor.a = 0;
-        Color currentColor = startColor;
-        float speed = 1 / actorFadeOutDuration;
 
-        while (currentColor.a > float.Epsilon)
-        {
-            sprite.color = Color.Lerp(startColor, endColor, speed*Time.deltaTime);
-            yield return null;
-        }
-        */
+        return new Animation(delegate (float p) {
+            sprite.color = Color.Lerp(startColor, endColor, p);
+        }, actorFadeOutDuration);
     }
 
     void ResetPlayer()
