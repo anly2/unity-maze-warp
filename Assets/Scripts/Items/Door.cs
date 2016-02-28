@@ -22,9 +22,9 @@ public class Door : MonoBehaviour {
     public void Close()
     {
         if (animator != null)
-            animator.SetBool("closed", true);
+            animator.SetBool("On", true);
         else
-            gameObject.SetActive(false);
+            gameObject.SetActive(true);
 
     }
 
@@ -32,7 +32,7 @@ public class Door : MonoBehaviour {
     {
 
         if (animator != null)
-            animator.SetBool("closed", false);
+            animator.SetBool("On", false);
         else
             gameObject.SetActive(false);
     }

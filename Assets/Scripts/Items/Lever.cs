@@ -6,6 +6,13 @@ public class Lever : MonoBehaviour {
 
     public GameObject linkedDoor;
 
+    private Animator animator;
+
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -27,7 +34,7 @@ public class Lever : MonoBehaviour {
 
     void Toggle()
     {
-        //flip X
-        //FIXME the code did not work
+        if (animator != null)
+            animator.SetBool("On", !animator.GetBool("On"));
     }
 }
