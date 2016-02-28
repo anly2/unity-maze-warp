@@ -210,6 +210,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &114088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 418262}
+  - 114: {fileID: 11443618}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &115896
 GameObject:
   m_ObjectHideFlags: 1
@@ -664,7 +680,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 444834}
-  - 114: {fileID: 11449266}
   m_Layer: 0
   m_Name: Level 1
   m_TagString: Untagged
@@ -1533,6 +1548,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 404522}
   m_RootOrder: 7
+--- !u!4 &418262
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114088}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 444834}
+  m_RootOrder: 0
 --- !u!4 &418332
 Transform:
   m_ObjectHideFlags: 1
@@ -1805,6 +1832,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 418262}
   - {fileID: 494568}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -2238,7 +2266,7 @@ Transform:
   - {fileID: 489598}
   - {fileID: 447186}
   m_Father: {fileID: 444834}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &494778
 Transform:
   m_ObjectHideFlags: 1
@@ -3371,6 +3399,25 @@ MonoBehaviour:
   - {fileID: 21300050, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   - {fileID: 21300052, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   - {fileID: 21300056, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
+--- !u!114 &11443618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2e882c6c8709a741ada935dd218cc5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Level 1
+  playerSpawnPlaces:
+  - {fileID: 401842}
+  - {fileID: 425010}
+  monkeySpawnTurnDelay: 3
+  monkeyObject: {fileID: 172740, guid: abdb4d9490d9a8341ad3098025fbea12, type: 2}
+  ghostObject: {fileID: 135872, guid: 12b69ed46330fda4c8b2789e6fbb93f4, type: 2}
+  actorFadeOutDuration: 1
 --- !u!114 &11445176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3426,18 +3473,6 @@ MonoBehaviour:
   - {fileID: 21300074, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   - {fileID: 21300076, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   - {fileID: 21300078, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
---- !u!114 &11449266
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 151970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2e882c6c8709a741ada935dd218cc5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Level 1
 --- !u!114 &11450166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5780,7 +5815,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: Name
+      value: Level 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 151970}

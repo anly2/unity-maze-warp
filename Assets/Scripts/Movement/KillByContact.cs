@@ -7,7 +7,7 @@ public class KillByContact : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            GameManager.instance.Warp();
+            LevelManager.instance.Warp();
         }
     }
 }

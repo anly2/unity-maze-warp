@@ -504,7 +504,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 444834, guid: 9d96b10f1e8d3e2479df8de03fec5d26, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d96b10f1e8d3e2479df8de03fec5d26, type: 2}
@@ -517,9 +517,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1168243715}
+  - 114: {fileID: 1168243714}
   - 114: {fileID: 1168243713}
   - 114: {fileID: 1168243717}
-  - 114: {fileID: 1168243714}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -552,13 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 820483e0dd870774989558995b9ba604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpawnPlaces:
-  - {fileID: 1820080194}
-  - {fileID: 1197207427}
-  monkeySpawnTurnDelay: 3
-  monkeyObject: {fileID: 172740, guid: abdb4d9490d9a8341ad3098025fbea12, type: 2}
-  ghostObject: {fileID: 135872, guid: 12b69ed46330fda4c8b2789e6fbb93f4, type: 2}
-  actorFadeOutDuration: 1
+  firstLevel: {fileID: 0}
 --- !u!4 &1168243715
 Transform:
   m_ObjectHideFlags: 0
@@ -583,10 +577,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnDuration: .200000003
---- !u!4 &1197207427 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 425010, guid: 9d96b10f1e8d3e2479df8de03fec5d26, type: 2}
-  m_PrefabInternal: {fileID: 1111007232}
 --- !u!1 &1471727813
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,10 +782,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: 'Death: '
---- !u!4 &1820080194 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 401842, guid: 9d96b10f1e8d3e2479df8de03fec5d26, type: 2}
-  m_PrefabInternal: {fileID: 1111007232}
 --- !u!1 &2093047610
 GameObject:
   m_ObjectHideFlags: 0

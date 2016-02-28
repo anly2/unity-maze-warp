@@ -58,6 +58,8 @@ public class UIManager : MonoBehaviour {
     {
         vMessage.text = message;
         animator.SetTrigger("Pre-Screen Ready");
+
+        TurnManager.instance.TurnInProgress = false;
     }
 
 
