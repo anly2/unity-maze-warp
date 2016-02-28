@@ -14,9 +14,8 @@ public class PickableItem : MonoBehaviour, Resetable
         public Vector2 scale = new Vector2(0.8f, 0.8f);
     }
 
-
-    private bool pickedUp = false;
-
+    public class CarriedItem : MonoBehaviour { }
+    
     struct StoredTransform
     {
         internal Transform parent;
@@ -35,6 +34,8 @@ public class PickableItem : MonoBehaviour, Resetable
         }
     };
     private StoredTransform initial;
+
+    private bool pickedUp = false;
 
     void Awake()
     {
@@ -63,8 +64,14 @@ public class PickableItem : MonoBehaviour, Resetable
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!pickedUp && other.gameObject.tag == "Player" || other.gameObject.tag == "Ghost")
+        if (pickedUp)
+            return;
+
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Ghost")
         {
+            if (other.gameObject.GetComponent<CarriedItem>() != null)
+                return;
+
             PickUp(other.gameObject);
         }
     }
@@ -89,6 +96,8 @@ public class PickableItem : MonoBehaviour, Resetable
         this.gameObject.transform.localPosition = pickedUpTransform.offset;
         this.gameObject.transform.localScale = pickedUpTransform.scale;
         BringInfront(actor);
+
+        actor.AddComponent<CarriedItem>();
 
         pickedUp = true;
     }
