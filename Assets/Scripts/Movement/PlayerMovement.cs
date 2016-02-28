@@ -14,14 +14,14 @@ public class PlayerMovement : Movement {
         {
             Vector3 dest = gameObject.transform.position + new Vector3(horizontal, vertical);
             
-            if (GameManager.instance.TurnInProgress)
+            if (TurnManager.instance.TurnInProgress)
                 return;
             
             if (!CanMove(dest))
                 return;
 
             Move(dest);
-            GameManager.instance.TakeTurn();
+            TurnManager.instance.TakeTurn();
         }
     }
 }

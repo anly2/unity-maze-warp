@@ -16,11 +16,11 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
     }
 
     void Start () {
-        GameManager.instance.AddTurnBasedListener(this);
+        TurnManager.instance.AddTurnBasedListener(this);
 	}
     void OnDestroy()
     {
-        GameManager.instance.RemoveTurnBasedListener(this);
+        TurnManager.instance.RemoveTurnBasedListener(this);
     }
 
     void TurnBased.Turn()

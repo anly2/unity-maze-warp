@@ -5,15 +5,12 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
 
-    public float turnDuration;
     public List<Transform> playerSpawnPlaces;
     public int monkeySpawnTurnDelay = 3;
     public GameObject monkeyObject;
     public GameObject ghostObject;
     public float actorFadeOutDuration = 1;
 
-    public bool TurnInProgress { get; private set; }
-    private List<TurnBased> turnListeners;
     private List<GhostInfo> ghostData;
     private IEnumerator<Vector3> playerSpawnPoints;
 
@@ -42,11 +39,9 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
-        TurnInProgress = true;
 
         DontDestroyOnLoad(gameObject);
-
-        turnListeners = new List<TurnBased>();
+        
         ghostData = new List<GhostInfo>();
 
         playerSpawnPoints = GetPlayerSpawnsEnumeration();
@@ -54,8 +49,6 @@ public class GameManager : MonoBehaviour {
 
         player = GameObject.FindWithTag("Player");
         ResetPlayer();
-
-        TurnInProgress = false;
     }
 
     IEnumerator<Vector3> GetPlayerSpawnsEnumeration()
@@ -72,48 +65,10 @@ public class GameManager : MonoBehaviour {
     }
 
 
-    public void AddTurnBasedListener(TurnBased listener)
-    {
-        turnListeners.Add(listener);
-    }
-
-    public bool RemoveTurnBasedListener(TurnBased listener)
-    {
-        return turnListeners.Remove(listener);
-    }
-    
-    public bool TakeTurn()
-    {
-        if (TurnInProgress)
-            return false;
-
-        TurnInProgress = true;
-        StartCoroutine(NotifyTurnListeners());
-        Invoke("EndTurn", turnDuration);
-        return true;
-    }
-
-    void EndTurn()
-    {
-        TurnInProgress = false;
-    }
-
-    IEnumerator NotifyTurnListeners()
-    {
-        foreach (TurnBased listener in turnListeners)
-        {
-            listener.Turn();
-        }
-
-        yield break;
-    }
-
-
     // Player was caught! Wrap the level back to starting positions
     public void Warp()
     {
-        CancelInvoke("EndTurn");
-        TurnInProgress = true;
+        TurnManager.instance.TurnInProgress = true;
 
         UIManager.instance.Hit();
         int delay = LevelManager.instance.Stats.DeathCount++;
@@ -124,7 +79,7 @@ public class GameManager : MonoBehaviour {
 
         StartCoroutine(ResetActors()
             .Then(() => StartGhostSpawners())
-            .Then(() => TurnInProgress = false));
+            .Then(() => TurnManager.instance.TurnInProgress = false));
     }
 
     void FlashRed() { } //UI Manager?
