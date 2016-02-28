@@ -9,5 +9,10 @@ public class KillByContact : MonoBehaviour {
         {
             Managers.Level.Warp();
         }
+        else if (other.gameObject.tag == "Ghost")
+        {
+            ChaserMovement ghost = other.gameObject.GetComponent<ChaserMovement>() as ChaserMovement;
+            (ghost as Resetable).Reset();
+        }
     }
 }
