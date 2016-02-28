@@ -40,6 +40,11 @@ public class LevelManager : MonoBehaviour {
         ResetPlayer();
     }
 
+    void OnDestroy()
+    {
+        instance = null;
+    }
+
     void Start() {
         Managers.UI.ShowPreScreen();
     }

@@ -27,6 +27,11 @@ public class UIManager : MonoBehaviour {
         FetchComponents();
     }
 
+    void OnDestroy()
+    {
+        instance = null;
+    }
+
     void FetchComponents()
     {
         animator = gameObject.GetComponent<Animator>();

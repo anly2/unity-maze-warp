@@ -20,6 +20,11 @@ public class TurnManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
+    void OnDestroy()
+    {
+        instance = null;
+    }
+
 
     [HideInInspector]
     public bool TurnInProgress

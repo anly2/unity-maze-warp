@@ -20,6 +20,11 @@ public class GameManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
+    void OnDestroy()
+    {
+        instance = null;
+    }
+
     void Start()
     {
         //Logic could change to have a 'main menu'
