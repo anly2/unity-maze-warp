@@ -51,9 +51,13 @@ public class UIManager : MonoBehaviour {
 
     public void ShowPreScreen(string message)
     {
+        Managers.Turn.TurnInProgress = true;
+
         vMessage.text = message;
         animator.SetTrigger("Pre-Screen Ready");
+    }
 
+    void DoneHidingPreScreen() {
         Managers.Turn.TurnInProgress = false;
     }
 
@@ -65,8 +69,9 @@ public class UIManager : MonoBehaviour {
 
     public void ShowPostScreen(string message)
     {
-        vMessage.text = message;
+        Managers.Turn.TurnInProgress = true;
 
+        vMessage.text = message;
         UpdateStats();
 
         animator.SetTrigger("Post-Screen Ready");
