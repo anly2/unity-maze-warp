@@ -49,17 +49,25 @@ public class UIManager : MonoBehaviour {
     }
 
 
-    public void ShowPreScreen()
+    public IEnumerator ShowPreScreen()
     {
-        ShowPreScreen(Managers.Level.Name);
+        return ShowPreScreen(Managers.Level.Name);
     }
 
-    public void ShowPreScreen(string message)
+    public IEnumerator ShowPreScreen(string message)
     {
         Managers.Turn.TurnInProgress = true;
 
         vMessage.text = message;
         animator.SetTrigger("Pre-Screen Ready");
+
+        return WaitPreScreenHidingDone();
+    }
+
+    IEnumerator WaitPreScreenHidingDone()
+    {
+        while (Managers.Turn.TurnInProgress)
+            yield return null;
     }
 
     void DoneHidingPreScreen() {

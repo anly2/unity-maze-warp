@@ -55,7 +55,22 @@ public class LevelManager : MonoBehaviour {
 
         player = GameObject.FindWithTag("Player");
 
-        Managers.UI.ShowPreScreen();
+
+        Managers.UI.ShowPreScreen()
+            .Then(delegate ()
+        {
+            float t0 = 0.5f; //motion to Exit
+            float t1 = 1f;   //wait time at Exit
+            float t2 = 1f;   //motion back to Player
+
+            Vector3 initialPosition = Camera.main.transform.position;
+
+            Camera.main.ZoomOn(new Vector2(5, -7), t0);
+
+            StartCoroutine(new WaitForSeconds(t0)
+                .Then(() => { return new WaitForSeconds(t1); })
+                .Then(() => Camera.main.ZoomOn(initialPosition, t2)));
+        }).Start(this);
     }
 
    

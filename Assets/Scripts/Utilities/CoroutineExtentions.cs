@@ -51,4 +51,28 @@ public static class CoroutineExtentions
         while (self.MoveNext())
             yield return self.Current;
     }
+
+    
+    public static IEnumerator Then(this YieldInstruction self, Action then)
+    {
+        return self.Then(() => { then(); return null; });
+    }
+
+    public static IEnumerator Then(this YieldInstruction self, Expression then)
+    {
+        yield return self;
+        yield return then();
+    }
+
+    
+    public static Coroutine Start(this IEnumerator coroutine)
+    {
+        return coroutine.Start(Managers.Game);
+    }
+
+    public static Coroutine Start(this IEnumerator coroutine, MonoBehaviour script)
+    {
+        return script.StartCoroutine(coroutine);
+    }
+
 }
