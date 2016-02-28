@@ -2,34 +2,38 @@
 using System.Collections;
 
 public class Door : MonoBehaviour {
-
-    SpriteRenderer openState;
-    SpriteRenderer closedState;
-
     public bool startsClosed = true;
 
-    void Start () {
+    private Animator animator;
+
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+    void Start()
+    {
         if (startsClosed)
             Close();
         else
             Open();
 	}
-    void Awake()
-    {
-        closedState = GameObject.Find("DoorClosedTile").GetComponent<SpriteRenderer>();
-        openState = GameObject.Find("DoorOpenedTile").GetComponent<SpriteRenderer>();
-
-    }
 
     public void Close()
     {
-        closedState.enabled = true;
-        openState.enabled = false;
+        if (animator != null)
+            animator.SetBool("closed", true);
+        else
+            gameObject.SetActive(false);
+
     }
 
     public void Open()
     {
-        closedState.enabled = false;
-        openState.enabled = true;
+
+        if (animator != null)
+            animator.SetBool("closed", false);
+        else
+            gameObject.SetActive(false);
     }
 }
