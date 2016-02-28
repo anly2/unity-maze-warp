@@ -61,7 +61,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: .5, y: .5}
 --- !u!95 &9510942
 Animator:
   serializedVersion: 3
@@ -188,6 +188,14 @@ Prefab:
       propertyPath: chaserObject
       value: 
       objectReference: {fileID: 172740, guid: abdb4d9490d9a8341ad3098025fbea12, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Size.x
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.y
+      value: .5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 135872}
