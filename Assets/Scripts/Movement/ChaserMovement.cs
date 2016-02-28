@@ -6,14 +6,16 @@ using System;
 public class ChaserMovement : Movement, TurnBased {
     public IEnumerator<Vector3> target = null;
     
-	void Start () {
-        Managers.Turn.AddTurnBasedListener(this);
-	}
+	void Start ()
+    {
+        this.Register();
+    }
+
     void OnDestroy()
     {
-        if (Managers.Turn != null)
-            Managers.Turn.RemoveTurnBasedListener(this);
+        this.Unregister();
     }
+
 
     void TurnBased.Turn()
     {

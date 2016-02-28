@@ -14,15 +14,17 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
     {
         spawnPosition = gameObject.transform.position;
     }
+    
+    void Start()
+    {
+        this.Register();
+    }
 
-    void Start () {
-        Managers.Turn.AddTurnBasedListener(this);
-	}
     void OnDestroy()
     {
-        if (Managers.Turn != null)
-            Managers.Turn.RemoveTurnBasedListener(this);
+        this.Unregister();
     }
+
 
     void TurnBased.Turn()
     {
