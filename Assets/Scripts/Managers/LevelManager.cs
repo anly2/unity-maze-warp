@@ -41,8 +41,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     void Start() {
-        UIManager.instance.ShowPreScreen();
-        TurnManager.instance.TurnInProgress = false;
+        Managers.UI.ShowPreScreen();
     }
 
 
@@ -86,10 +85,10 @@ public class LevelManager : MonoBehaviour {
     // Player was caught! Wrap the level back to starting positions
     public void Warp()
     {
-        TurnManager.instance.TurnInProgress = true;
+        Managers.Turn.TurnInProgress = true;
 
-        UIManager.instance.Hit();
-        int delay = LevelManager.instance.Stats.DeathCount++;
+        Managers.UI.Hit();
+        int delay = Managers.Level.Stats.DeathCount++;
         AddGhost(delay);
 
         //#!increment death count
@@ -97,13 +96,13 @@ public class LevelManager : MonoBehaviour {
 
         StartCoroutine(ResetActors()
             .Then(() => StartGhostSpawners())
-            .Then(() => TurnManager.instance.TurnInProgress = false));
+            .Then(() => Managers.Turn.TurnInProgress = false));
     }
 
     // Player finished the level!
     public void Complete()
     {
-        UIManager.instance.ShowPostScreen();
+        Managers.UI.ShowPostScreen();
     }
 
 

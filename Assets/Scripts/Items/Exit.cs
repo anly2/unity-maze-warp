@@ -8,6 +8,6 @@ public class Exit : MonoBehaviour {
         if (other.gameObject.tag != "Player")
             return;
 
-        LevelManager.instance.Complete();
+        Managers.Level.Complete();
     }
 }

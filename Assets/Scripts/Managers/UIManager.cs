@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour {
 
     public void ShowPreScreen()
     {
-        ShowPreScreen(LevelManager.instance.Name);
+        ShowPreScreen(Managers.Level.Name);
     }
 
     public void ShowPreScreen(string message)
@@ -59,13 +59,13 @@ public class UIManager : MonoBehaviour {
         vMessage.text = message;
         animator.SetTrigger("Pre-Screen Ready");
 
-        TurnManager.instance.TurnInProgress = false;
+        Managers.Turn.TurnInProgress = false;
     }
 
 
     public void ShowPostScreen()
     {
-        ShowPostScreen(LevelManager.instance.Name + "\ncompleted");
+        ShowPostScreen(Managers.Level.Name + "\ncompleted");
     }
 
     public void ShowPostScreen(string message)
@@ -79,8 +79,8 @@ public class UIManager : MonoBehaviour {
 
     void UpdateStats()
     {
-        vDeathCount.Set(LevelManager.instance.Stats.DeathCount);
-        vTurnCount.Set(LevelManager.instance.Stats.TurnCount);
-        vTimeElapsed.Set(LevelManager.instance.Stats.TimeElapsed);
+        vDeathCount.Set(Managers.Level.Stats.DeathCount);
+        vTurnCount.Set(Managers.Level.Stats.TurnCount);
+        vTimeElapsed.Set(Managers.Level.Stats.TimeElapsed);
     }
 }

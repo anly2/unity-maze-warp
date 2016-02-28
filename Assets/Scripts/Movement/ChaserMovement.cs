@@ -7,11 +7,11 @@ public class ChaserMovement : Movement, TurnBased {
     public IEnumerator<Vector3> target = null;
     
 	void Start () {
-        TurnManager.instance.AddTurnBasedListener(this);
+        Managers.Turn.AddTurnBasedListener(this);
 	}
     void OnDestroy()
     {
-        TurnManager.instance.RemoveTurnBasedListener(this);
+        Managers.Turn.RemoveTurnBasedListener(this);
     }
 
     void TurnBased.Turn()
@@ -30,7 +30,7 @@ public class ChaserMovement : Movement, TurnBased {
     {
         if (other.gameObject.tag == "Player")
         {
-            GameController.instance.warp();
+            Managers.Level.Warp();
         }
     }
     */

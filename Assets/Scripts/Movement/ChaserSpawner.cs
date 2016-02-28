@@ -16,11 +16,11 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
     }
 
     void Start () {
-        TurnManager.instance.AddTurnBasedListener(this);
+        Managers.Turn.AddTurnBasedListener(this);
 	}
     void OnDestroy()
     {
-        TurnManager.instance.RemoveTurnBasedListener(this);
+        Managers.Turn.RemoveTurnBasedListener(this);
     }
 
     void TurnBased.Turn()
@@ -35,7 +35,7 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
 
     void Dispose()
     {
-        //GameController.instance.RemoveTurnBasedListener(this);
+        //Managers.Turn.RemoveTurnBasedListener(this);
         Destroy(this);
     }
 
