@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class LevelManager : MonoBehaviour {
     public static LevelManager instance = null;
@@ -15,17 +16,7 @@ public class LevelManager : MonoBehaviour {
     [HideInInspector]
     public Statistics Stats { get; private set; }
     [HideInInspector]
-    public Vector3 PlayerSpawn
-    {
-        get
-        {
-            return playerSpawns.Current;
-        }
-        private set
-        {
-            playerSpawns.MoveNext();
-        }
-    }
+    public Vector3 PlayerSpawn { get { return playerSpawns.Current; } }
 
     private List<Resetable> resetables;
     private List<GhostInfo> ghostData;
@@ -43,14 +34,13 @@ public class LevelManager : MonoBehaviour {
             return;
         }
 
-        Stats = new Statistics();
         resetables = new List<Resetable>();
-        ghostData  = new List<GhostInfo>();
+        ghostData = new List<GhostInfo>();
+
+        Stats = new Statistics();
 
         playerSpawns = GetPlayerSpawnsEnumeration();
         playerSpawns.MoveNext();
-
-        player = GameObject.FindWithTag("Player");
     }
 
     void OnDestroy()
@@ -58,7 +48,13 @@ public class LevelManager : MonoBehaviour {
         instance = null;
     }
 
-    void Start() {
+    void Start()
+    {
+        new Statistics.DeathCounter().Register();
+        new Statistics.TurnCounter().Register();
+
+        player = GameObject.FindWithTag("Player");
+
         Managers.UI.ShowPreScreen();
     }
 
@@ -79,6 +75,22 @@ public class LevelManager : MonoBehaviour {
 
             internal set {
                 _startTime = value;
+            }
+        }
+
+        public class DeathCounter : Resetable
+        {
+            public void Reset()
+            {
+                Managers.Level.Stats.DeathCount++;
+            }
+        }
+
+        public class TurnCounter : TurnBased
+        {
+            public void Turn()
+            {
+                Managers.Level.Stats.TurnCount++;
             }
         }
     }
@@ -136,8 +148,8 @@ public class LevelManager : MonoBehaviour {
         Managers.Turn.TurnInProgress = true;
 
         Managers.UI.Hit();
-        int delay = Managers.Level.Stats.DeathCount++;
-        AddGhost(delay);
+
+        AddGhost(Stats.DeathCount);
 
         playerSpawns.MoveNext();
 
