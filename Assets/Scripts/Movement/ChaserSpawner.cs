@@ -20,7 +20,8 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
 	}
     void OnDestroy()
     {
-        Managers.Turn.RemoveTurnBasedListener(this);
+        if (Managers.Turn != null)
+            Managers.Turn.RemoveTurnBasedListener(this);
     }
 
     void TurnBased.Turn()
