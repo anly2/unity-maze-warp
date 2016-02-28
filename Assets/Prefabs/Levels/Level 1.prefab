@@ -219,6 +219,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 418262}
   - 114: {fileID: 11443618}
+  - 114: {fileID: 11426726}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -3304,6 +3305,18 @@ MonoBehaviour:
   - {fileID: 21300074, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   - {fileID: 21300076, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   - {fileID: 21300078, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
+--- !u!114 &11426726
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33fd474f63781924189102b3738fd3a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnDuration: .200000003
 --- !u!114 &11430396
 MonoBehaviour:
   m_ObjectHideFlags: 1

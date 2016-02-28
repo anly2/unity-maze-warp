@@ -5,8 +5,6 @@ using System.Collections;
 public class UIManager : MonoBehaviour {
     public static UIManager instance = null;
 
-    public GameObject HUD;
-
     private Animator animator;
     private Text vMessage;
     private GameObject vStats;
@@ -26,17 +24,14 @@ public class UIManager : MonoBehaviour {
         
         DontDestroyOnLoad(gameObject);
 
-        if (HUD == null)
-            HUD = GameObject.Find("HUD");
-
         FetchComponents();
     }
 
     void FetchComponents()
     {
-        animator = HUD.GetComponent<Animator>();
-        vMessage = HUD.transform.Find("Message").GetComponent<Text>();
-        vStats = HUD.transform.Find("Stats").gameObject;
+        animator = gameObject.GetComponent<Animator>();
+        vMessage = gameObject.transform.Find("Message").GetComponent<Text>();
+        vStats = gameObject.transform.Find("Stats").gameObject;
         vDeathCount  = vStats.transform.Find("Death Count").GetComponent<LabelledValue>();
         vTurnCount   = vStats.transform.Find("Turn Count").GetComponent<LabelledValue>();
         vTimeElapsed = vStats.transform.Find("Time Elapsed").GetComponent<LabelledValue>();
