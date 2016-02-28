@@ -9,8 +9,6 @@ public static class TurnBasedExtensions
 {
     public static bool Register(this TurnBased self)
     {
-        Debug.Log("Registering: " + self);
-
         if (Managers.Turn == null)
             return false;
 

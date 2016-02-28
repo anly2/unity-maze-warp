@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Door : MonoBehaviour {
+public class Door : MonoBehaviour, Resetable {
     public bool startsClosed = true;
 
     private Animator animator;
@@ -13,11 +13,23 @@ public class Door : MonoBehaviour {
 
     void Start()
     {
+        (this as Resetable).Register();
+        Reset();
+    }
+
+    void OnDestroy()
+    {
+        (this as Resetable).Unregister();
+    }
+
+
+    public void Reset()
+    {
         if (startsClosed)
             Close();
         else
             Open();
-	}
+    }
 
     public void Close()
     {

@@ -40,7 +40,7 @@ public class MazeMapLoader : MonoBehaviour {
                     GameObject tile = tileTypes[GetValue(map, x, y, w)];
                     Instantiate(tile, new Vector3(x, y), Quaternion.identity);
                 }
-                catch (KeyNotFoundException ignore){
+                catch (KeyNotFoundException){
                 }
             }
         }

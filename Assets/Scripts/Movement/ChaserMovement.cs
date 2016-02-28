@@ -3,17 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class ChaserMovement : Movement, TurnBased {
+public class ChaserMovement : Movement, TurnBased, Resetable, Actor {
     public IEnumerator<Vector3> target = null;
     
 	void Start ()
     {
-        this.Register();
+        (this as TurnBased).Register();
+        (this as Resetable).Register();
     }
 
     void OnDestroy()
     {
-        this.Unregister();
+        (this as TurnBased).Unregister();
+        (this as Resetable).Unregister();
     }
 
 
@@ -28,13 +30,10 @@ public class ChaserMovement : Movement, TurnBased {
         Move(dest);
     }
 
-    /*
-    void OnTriggerEnter2D(Collision2D other)
+    void Resetable.Reset()
     {
-        if (other.gameObject.tag == "Player")
-        {
-            Managers.Level.Warp();
-        }
+        StartCoroutine(
+            this.FadeOut()
+            .Then(() => Destroy(this.gameObject)));
     }
-    */
 }

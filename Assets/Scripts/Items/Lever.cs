@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class Lever : MonoBehaviour {
+public class Lever : MonoBehaviour, Resetable {
 
     public GameObject linkedDoor;
 
@@ -11,6 +11,22 @@ public class Lever : MonoBehaviour {
     void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+
+
+    void Start()
+    {
+        (this as Resetable).Register();
+    }
+
+    void OnDestroy()
+    {
+        (this as Resetable).Unregister();
+    }
+
+    void Resetable.Reset()
+    {
+        animator.SetBool("On", false);
     }
 
 

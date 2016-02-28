@@ -14,9 +14,22 @@ public class LevelManager : MonoBehaviour {
 
     [HideInInspector]
     public Statistics Stats { get; private set; }
+    [HideInInspector]
+    public Vector3 PlayerSpawn
+    {
+        get
+        {
+            return playerSpawns.Current;
+        }
+        private set
+        {
+            playerSpawns.MoveNext();
+        }
+    }
 
+    private List<Resetable> resetables;
     private List<GhostInfo> ghostData;
-    private IEnumerator<Vector3> playerSpawnPoints; //converted+
+    private IEnumerator<Vector3> playerSpawns; //converted + cycling
     private GameObject player; //for easy access
 
 
@@ -31,13 +44,13 @@ public class LevelManager : MonoBehaviour {
         }
 
         Stats = new Statistics();
-        ghostData = new List<GhostInfo>();
+        resetables = new List<Resetable>();
+        ghostData  = new List<GhostInfo>();
 
-        playerSpawnPoints = GetPlayerSpawnsEnumeration();
-        playerSpawnPoints.MoveNext();
+        playerSpawns = GetPlayerSpawnsEnumeration();
+        playerSpawns.MoveNext();
 
         player = GameObject.FindWithTag("Player");
-        ResetPlayer();
     }
 
     void OnDestroy()
@@ -49,7 +62,7 @@ public class LevelManager : MonoBehaviour {
         Managers.UI.ShowPreScreen();
     }
 
-
+   
     /* Inner Classes */
 
     public class Statistics
@@ -85,33 +98,7 @@ public class LevelManager : MonoBehaviour {
     }
 
 
-    /* Functionality */
-
-    // Player was caught! Wrap the level back to starting positions
-    public void Warp()
-    {
-        Managers.Turn.TurnInProgress = true;
-
-        Managers.UI.Hit();
-        int delay = Managers.Level.Stats.DeathCount++;
-        AddGhost(delay);
-
-        //#!increment death count
-        playerSpawnPoints.MoveNext();
-
-        StartCoroutine(ResetActors()
-            .Then(() => StartGhostSpawners())
-            .Then(() => Managers.Turn.TurnInProgress = false));
-    }
-
-    // Player finished the level!
-    public void Complete()
-    {
-        Managers.UI.ShowPostScreen();
-    }
-
-
-    /* Helper methods */
+    /* Manage Spawn Points */
 
     IEnumerator<Vector3> GetPlayerSpawnsEnumeration()
     {
@@ -126,76 +113,63 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
-    IEnumerator ResetActors()
+
+
+    /* Manage Subscriptions */
+
+    public void RegisterResetable(Resetable resetable)
     {
-        //fade out player, ghosts, monkeys
-        List<GameObject> actors = GetActors();
-        foreach (GameObject actor in actors)
-            FadeOut(actor);
-
-        yield return new WaitForSeconds(actorFadeOutDuration);
-
-        //reset player
-        ResetPlayer();
-
-        //destroy all the rest
-        actors.Remove(player);
-        foreach (GameObject actor in actors)
-            Destroy(actor);
-
-        yield break;
+        this.resetables.Add(resetable);
     }
 
-    List<GameObject> GetActors()
+    public bool UnregisterResetable(Resetable resetable)
     {
-        List<GameObject> actors = new List<GameObject>();
-        actors.Add(player);
-        actors.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
-        actors.AddRange(GameObject.FindGameObjectsWithTag("Ghost"));
-        return actors;
+        return this.resetables.Remove(resetable);
     }
 
-    void FadeOut(GameObject actor)
+
+    /* Functionality */
+
+    // Player was caught! Wrap the level back to starting positions
+    public void Warp()
     {
-        SpriteRenderer sprite = actor.GetComponent<SpriteRenderer>();
+        Managers.Turn.TurnInProgress = true;
 
-        if (sprite == null)
-            return;
+        Managers.UI.Hit();
+        int delay = Managers.Level.Stats.DeathCount++;
+        AddGhost(delay);
 
-        Color startColor = sprite.color;
-        Color endColor = startColor;
-        endColor.a = 0;
+        playerSpawns.MoveNext();
 
-        StartCoroutine(new Animation(delegate (float p) {
-            sprite.color = Color.Lerp(startColor, endColor, p);
-        }, actorFadeOutDuration));
+        StartCoroutine(ResetAll()
+            .Then(() => StartGhostSpawners())
+            .Then(() => Managers.Turn.TurnInProgress = false));
     }
 
-    void ResetPlayer()
+    // Player finished the level!
+    public void Complete()
     {
-        //position
-        player.transform.position = playerSpawnPoints.Current;
-        player.GetComponent<PlayerMovement>().trajectory.Clear();
-
-        //color
-        SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
-        Color c = playerSprite.color;
-        c.a = 1; //#! potentially different than 1
-        playerSprite.color = c;
-
-        //chaser spawner
-        ChaserSpawner spawner = player.AddComponent<ChaserSpawner>() as ChaserSpawner;
-        spawner.chaserObject = monkeyObject;
-        spawner.spawnTurnDelay = monkeySpawnTurnDelay;
+        Managers.UI.ShowPostScreen();
     }
+
+
+    /* Helper methods */
 
     void AddGhost(int turnDelay)
     {
         Trajectory targetTrajectory = player.GetComponent<Movement>().trajectory.Clone();
 
-        Vector3 spawnPoint = playerSpawnPoints.Current;
+        Vector3 spawnPoint = playerSpawns.Current;
 
         ghostData.Add(new GhostInfo(turnDelay, spawnPoint, targetTrajectory));
+    }
+
+    IEnumerator ResetAll()
+    {
+        foreach (Resetable thing in resetables)
+            thing.Reset();
+
+        yield return new WaitForSeconds(actorFadeOutDuration);
     }
 
     void StartGhostSpawners()
