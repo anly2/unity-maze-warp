@@ -1718,7 +1718,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Turn: '
+  m_Text: 'Turns: '
 --- !u!222 &617244004
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5144,7 +5144,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Death: 0'
+  m_Text: 'Deaths: 0'
 --- !u!222 &1698218526
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5162,7 +5162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d5286867a82dc4bbeaedef35413450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: 'Death: '
+  label: 'Deaths: '
 --- !u!1 &1758530218
 GameObject:
   m_ObjectHideFlags: 0
