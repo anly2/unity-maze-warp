@@ -81,6 +81,21 @@ public class UIManager : MonoBehaviour {
     {
         vDeathCount.Set(Managers.Level.Stats.DeathCount);
         vTurnCount.Set(Managers.Level.Stats.TurnCount);
-        vTimeElapsed.Set(Managers.Level.Stats.TimeElapsed);
+        vTimeElapsed.Set(FormatTimer(Managers.Level.Stats.TimeElapsed));
+    }
+
+    string FormatTimer(float time)
+    {
+        int t = (int)time;
+        int seconds = t % 60;
+        int minutes = t / 60;
+        int hours = t / (60 * 60);
+
+        string formatted = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+        if (hours > 0)
+            formatted = hours + ":" + formatted;
+
+        return formatted;
     }
 }
