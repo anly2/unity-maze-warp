@@ -5,10 +5,12 @@ public class Door : MonoBehaviour, Resetable {
     public bool startsClosed = true;
 
     private Animator animator;
+    private Collider2D collider;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
+        collider = GetComponent<Collider2D>();
     }
 
     void Start()
@@ -25,27 +27,30 @@ public class Door : MonoBehaviour, Resetable {
 
     public void Reset()
     {
-        if (startsClosed)
-            Close();
-        else
-            Open();
+        SetClosed(startsClosed);
     }
 
     public void Close()
     {
-        if (animator != null)
-            animator.SetBool("On", true);
-        else
-            gameObject.SetActive(true);
-
+        SetClosed(true);
     }
 
     public void Open()
     {
+        SetClosed(false);
+    }
 
-        if (animator != null)
-            animator.SetBool("On", false);
+
+    void SetClosed(bool flag)
+    {
+        if (collider != null)
+        {
+            if (animator != null)
+                animator.SetBool("On", flag);
+
+            collider.enabled = flag;
+        }
         else
-            gameObject.SetActive(false);
+            gameObject.SetActive(flag);
     }
 }
