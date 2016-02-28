@@ -32,9 +32,9 @@ public class Lever : MonoBehaviour, Resetable {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag != "Player")
+        if (other.gameObject.tag != "Player" && other.gameObject.tag != "Ghost")
             return;
-
+        
         Toggle();
             
         if (linkedDoor == null)
