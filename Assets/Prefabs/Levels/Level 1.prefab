@@ -1061,7 +1061,7 @@ GameObject:
   - 4: {fileID: 440684}
   - 212: {fileID: 21234166}
   - 61: {fileID: 6162562}
-  - 61: {fileID: 6141290}
+  - 114: {fileID: 11428060}
   m_Layer: 8
   m_Name: Banana
   m_TagString: Banana
@@ -2493,19 +2493,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
---- !u!61 &6141290
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 182504}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5}
 --- !u!61 &6149752
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -3317,6 +3304,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnDuration: .200000003
+--- !u!114 &11428060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 182504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42266354dc90b544861c59720bb09c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickedUpTransform:
+    offset: {x: .200000003, y: -.200000003}
+    scale: {x: .800000012, y: .800000012}
 --- !u!114 &11430396
 MonoBehaviour:
   m_ObjectHideFlags: 1

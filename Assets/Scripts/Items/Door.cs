@@ -5,7 +5,7 @@ public class Door : MonoBehaviour, Resetable {
     public bool startsClosed = true;
 
     private Animator animator;
-    private Collider2D collider;
+    private new Collider2D collider;
 
     void Awake()
     {
