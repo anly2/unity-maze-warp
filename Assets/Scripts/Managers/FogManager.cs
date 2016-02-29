@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class FogManager : MonoBehaviour {
     public static FogManager instance = null;
@@ -30,7 +30,7 @@ public class FogManager : MonoBehaviour {
         Fog(new Vector3(1, -1, 0));
         Fog(new Vector3(2, -1, 0));
         Fog(new Vector3(Mathf.Epsilon, -1.5f, 0));
-        Explore(new Vector3(1, -1, 0));
+        Unfog(new Vector3(1, -1, 0));
         //*/
     }
 
@@ -55,7 +55,8 @@ public class FogManager : MonoBehaviour {
         return tile;
     }
 
-    public GameObject Explore(Vector3 loc)
+
+    public GameObject Unfog(Vector3 loc)
     {
         string tileName;
         GameObject tile = GetFogTileAt(loc, out tileName);
@@ -68,6 +69,28 @@ public class FogManager : MonoBehaviour {
         return tile;
     }
 
+
+    public GameObject[] Explore(Vector3 loc)
+    {
+        List<GameObject> affected = new List<GameObject>();
+
+        for (int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                Vector3 tileLoc = new Vector3(loc.x + j, loc.y + i, loc.z);
+                GameObject tile = Unfog(tileLoc);
+
+                if (tile != null)
+                    affected.Add(tile);
+            }
+        }
+
+        return affected.ToArray();
+    }
+
+
+    /* Helper methods */
 
     GameObject GetFogTileAt(Vector3 loc)
     {
@@ -87,6 +110,8 @@ public class FogManager : MonoBehaviour {
         return string.Format(fogTileNameFormat, loc.x, loc.y);
     }
 
+
+    /* Convenience functionality */
 
     public void FogAll()
     {

@@ -55,7 +55,14 @@ public class LevelManager : MonoBehaviour {
 
         player = GameObject.FindWithTag("Player");
 
+        Intro();
+    }
 
+
+    /* Scripted Intro */
+
+    void Intro()
+    {
         Managers.UI.ShowPreScreen()
             .Then(delegate ()
         {
@@ -63,10 +70,15 @@ public class LevelManager : MonoBehaviour {
             float t1 = 1f;   //wait time at Exit
             float t2 = 1f;   //motion back to Player
 
+
             Camera camera = Camera.main;
             Vector3 initialPosition = camera.transform.position;
+            Vector2 exitLocation = new Vector2(5, -7);
 
-            camera.MotionTo(new Vector2(5, -7), t0)
+            Managers.Fog.Explore(initialPosition);
+            Managers.Fog.Explore(exitLocation);
+
+            camera.MotionTo(exitLocation, t0)
                 .Then(new WaitForSeconds(t1))
                 .Then(() => camera.MotionTo(initialPosition, t2).Start(this))
                 .Then(() => Managers.Turn.TurnInProgress = false)
