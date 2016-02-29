@@ -7,7 +7,7 @@ public class FogManager : MonoBehaviour {
 
     public GameObject fogObject;
     public string fogTileNameFormat = "Fog Tile at ({0:0}, {1:0})";
-    public float defaultExploredRadius = 3;
+    public int defaultExploredRadius = 1;
 
     private float tol = 0.2f; //compensates for rounding errors
 
@@ -96,51 +96,25 @@ public class FogManager : MonoBehaviour {
 
     public GameObject[] Explore(Vector3 loc)
     {
-        float r = defaultExploredRadius - tol; //avoid rounding erros
-        Rect area = new Rect(0,0, r, r);
-        area.center = loc;
-
-        return Explore(area);
-
+        return Explore(loc, defaultExploredRadius);
     }
 
     public Coroutine[] Explore(Vector3 loc, float fadeTime)
     {
-        float r = defaultExploredRadius - tol; //avoid rounding erros
-        Rect area = new Rect(0, 0, r, r);
-        area.center = loc;
-
-        return Explore(area, fadeTime);
+        return Explore(loc, defaultExploredRadius, fadeTime);
     }
 
     
-    public GameObject[] ExploreArea(Vector3 loc, float radius)
+    public GameObject[] Explore(Vector3 loc, int radius)
     {
-        Rect area = new Rect(0, 0, radius, radius);
-        area.center = loc;
-
-        return Explore(area);
+        return ApplyToArea<GameObject>(loc, radius, Unfog);
     }
 
-    public Coroutine[] ExploreArea(Vector3 loc, float radius, float fadeTime)
+    public Coroutine[] Explore(Vector3 loc, int radius, float fadeTime)
     {
-        Rect area = new Rect(0, 0, radius, radius);
-        area.center = loc;
-
-        return Explore(area, fadeTime);
+        return ApplyToArea<Coroutine>(loc, radius, tile => Unfog(tile, fadeTime));
     }
-
-
-    public GameObject[] Explore(Rect area)
-    {
-        return ApplyToArea<GameObject>(area, Unfog);
-    }
-
-    public Coroutine[] Explore(Rect area, float fadeTime)
-    {
-        return ApplyToArea<Coroutine>(area, tile => Unfog(tile, fadeTime));
-    }
-
+    
 
     /* Helper methods */
 
@@ -165,21 +139,21 @@ public class FogManager : MonoBehaviour {
 
     delegate R Action<R>(Vector3 loc);
 
-    R[] ApplyToArea<R>(Rect area, Action<R> action)
+    R[] ApplyToArea<R>(Vector3 loc, int radius, Action<R> action)
     {
         List<R> affected = new List<R>();
 
-        float sx = 1;
-        float sy = 1;
+        int xc = Mathf.RoundToInt(loc.x);
+        int yc = Mathf.RoundToInt(loc.y);
 
-        for (float i = area.yMin; i < area.yMax; i += sy)
+        for (int y = yc - radius, ye = yc + radius; y < ye; y++)
         {
-            for (float j = area.xMin; j < area.xMax; j += sx)
+            for (int x = xc - radius, xe = xc + radius; x < xe; x++)
             {
-                R fogTile = action(new Vector2(j, i));
+                R result = action(new Vector2(x, y));
 
-                if (fogTile != null)
-                    affected.Add(fogTile);
+                if (result != null)
+                    affected.Add(result);
             }
         }
 

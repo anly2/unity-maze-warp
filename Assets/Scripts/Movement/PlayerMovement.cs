@@ -6,7 +6,7 @@ public class PlayerMovement : Movement, Resetable{
 
     public float exploreRateOnSpawn = 0.2f;
     public float exploreRateOnMove = 0.2f;
-    public float sightRadius = 5;
+    public int sightRadius = 3;
 
 
     void Start()
@@ -71,7 +71,7 @@ public class PlayerMovement : Movement, Resetable{
 
             Move(dest);
             Managers.Turn.TakeTurn();
-            Managers.Fog.ExploreArea(dest, sightRadius, exploreRateOnMove);
+            Managers.Fog.Explore(dest, sightRadius, exploreRateOnMove);
         }
     }
 }

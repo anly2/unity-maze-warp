@@ -72,7 +72,7 @@ Camera:
   m_GameObject: {fileID: 185934}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -84,7 +84,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -172,6 +172,9 @@ MonoBehaviour:
   blockingLayer:
     serializedVersion: 2
     m_Bits: 512
+  exploreRateOnSpawn: .200000003
+  exploreRateOnMove: .200000003
+  sightRadius: 3
 --- !u!124 &12416992
 Behaviour:
   m_ObjectHideFlags: 1
