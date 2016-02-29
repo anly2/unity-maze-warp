@@ -52,7 +52,30 @@ public static class CoroutineExtentions
             yield return self.Current;
     }
 
-    
+
+    public static IEnumerator Then(this IEnumerator self, YieldInstruction then)
+    {
+        while (self.MoveNext())
+            yield return self.Current;
+
+        yield return then;
+    }
+
+    public static IEnumerator Then(this YieldInstruction self, IEnumerator then)
+    {
+        yield return self;
+
+        while (then.MoveNext())
+            yield return then.Current;
+    }
+
+
+    public static IEnumerator Then(this YieldInstruction self, YieldInstruction then)
+    {
+        yield return self;
+        yield return then;
+    }
+
     public static IEnumerator Then(this YieldInstruction self, Action then)
     {
         return self.Then(() => { then(); return null; });

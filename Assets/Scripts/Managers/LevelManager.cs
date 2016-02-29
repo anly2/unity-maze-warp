@@ -59,17 +59,20 @@ public class LevelManager : MonoBehaviour {
         Managers.UI.ShowPreScreen()
             .Then(delegate ()
         {
+            Managers.Turn.TurnInProgress = true;
+
             float t0 = 0.5f; //motion to Exit
             float t1 = 1f;   //wait time at Exit
             float t2 = 1f;   //motion back to Player
 
-            Vector3 initialPosition = Camera.main.transform.position;
+            Camera camera = Camera.main;
+            Vector3 initialPosition = camera.transform.position;
 
-            Camera.main.ZoomOn(new Vector2(5, -7), t0);
-
-            StartCoroutine(new WaitForSeconds(t0)
-                .Then(() => { return new WaitForSeconds(t1); })
-                .Then(() => Camera.main.ZoomOn(initialPosition, t2)));
+            camera.MotionTo(new Vector2(5, -7), t0)
+                .Then(new WaitForSeconds(t1))
+                .Then(() => camera.MotionTo(initialPosition, t2).Start(this))
+                .Then(() => Managers.Turn.TurnInProgress = false)
+                .Start(this);
         }).Start(this);
     }
 
