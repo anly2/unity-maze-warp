@@ -3354,6 +3354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fogObject: {fileID: 169708, guid: 39850f0278538db4dbe46ebd857ff1ff, type: 2}
   fogTileNameFormat: Fog Tile at ({0:0}, {1:0})
+  defaultExploredRadius: 3
 --- !u!1 &1110588904
 GameObject:
   m_ObjectHideFlags: 0

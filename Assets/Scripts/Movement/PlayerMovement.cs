@@ -4,8 +4,8 @@ using System;
 
 public class PlayerMovement : Movement, Resetable{
 
-    public float exploreRateOnSpawn = 0.5f;
-    public float exploreRateOnMove = 0.5f;
+    public float exploreRateOnSpawn = 0.2f;
+    public float exploreRateOnMove = 0.2f;
     public float sightRadius = 5;
 
 
