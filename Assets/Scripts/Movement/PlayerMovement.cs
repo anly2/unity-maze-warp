@@ -4,6 +4,10 @@ using System;
 
 public class PlayerMovement : Movement, Resetable{
 
+    public float exploreRateOnSpawn = 0.5f;
+    public float exploreRateOnMove = 0.5f;
+
+
     void Start()
     {
         (this as Resetable).Register();
@@ -36,6 +40,9 @@ public class PlayerMovement : Movement, Resetable{
         //position at spawn point
         gameObject.transform.position = Managers.Level.PlayerSpawn;
 
+        //reveal the area
+        Managers.Fog.Explore(gameObject.transform.position, exploreRateOnSpawn);
+
         //add chaser spawner
         ChaserSpawner spawner = gameObject.AddComponent<ChaserSpawner>() as ChaserSpawner;
         spawner.chaserObject = Managers.Level.monkeyObject;
@@ -63,6 +70,7 @@ public class PlayerMovement : Movement, Resetable{
 
             Move(dest);
             Managers.Turn.TakeTurn();
+            Managers.Fog.Explore(dest, exploreRateOnMove);
         }
     }
 }
