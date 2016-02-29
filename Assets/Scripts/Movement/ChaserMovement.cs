@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class ChaserMovement : Movement, TurnBased, Resetable, Actor {
+public class ChaserMovement : Movement, TurnBased, Resetable {
     public IEnumerator<Vector3> target = null;
     
 	void Start ()
@@ -32,8 +32,8 @@ public class ChaserMovement : Movement, TurnBased, Resetable, Actor {
 
     void Resetable.Reset()
     {
-        StartCoroutine(
-            this.FadeOut()
-            .Then(() => Destroy(this.gameObject)));
+        gameObject.FadeOut()
+            .Then(() => Destroy(gameObject))
+            .Start(this);
     }
 }

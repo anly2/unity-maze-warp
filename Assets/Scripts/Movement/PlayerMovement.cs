@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class PlayerMovement : Movement, Resetable, Actor {
+public class PlayerMovement : Movement, Resetable{
 
     void Start()
     {
@@ -18,13 +18,13 @@ public class PlayerMovement : Movement, Resetable, Actor {
 
     void Resetable.Reset()
     {
-        float opacity = this.GetOpacity();
+        float opacity = gameObject.GetOpacity();
         trajectory.Clear();
 
         StartCoroutine(
-            this.FadeOut()
+            gameObject.FadeOut()
             .Then(() => Spawn())
-            .Then(() => this.SetOpacity(opacity))
+            .Then(() => gameObject.SetOpacity(opacity))
         );
     }
 
