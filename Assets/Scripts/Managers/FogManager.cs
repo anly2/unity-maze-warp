@@ -5,7 +5,7 @@ public class FogManager : MonoBehaviour {
     public static FogManager instance = null;
 
     public GameObject fogObject;
-    public string fogTileNameFormat = "Fog Tile at ({0}, {1})";
+    public string fogTileNameFormat = "Fog Tile at ({0:0}, {1:0})";
 
     void Awake()
     {
@@ -29,6 +29,7 @@ public class FogManager : MonoBehaviour {
         Fog(new Vector3(0, -1, 0));
         Fog(new Vector3(1, -1, 0));
         Fog(new Vector3(2, -1, 0));
+        Fog(new Vector3(Mathf.Epsilon, -1.5f, 0));
         Explore(new Vector3(1, -1, 0));
         //*/
     }
