@@ -13,17 +13,6 @@ public class PickableItem : MonoBehaviour, Resetable
         public Vector2 offset = new Vector2(0.2f, -0.2f);
         public Vector2 scale = new Vector2(0.8f, 0.8f);
     }
-
-    public class CarriedItem : MonoBehaviour
-    {
-        public PickableItem carriedItem;
-
-        void OnDestroy()
-        {
-            if (carriedItem != null)
-                carriedItem.Drop();
-        }
-    }
     
     struct StoredTransform
     {
@@ -43,6 +32,25 @@ public class PickableItem : MonoBehaviour, Resetable
         }
     };
     private StoredTransform initial;
+
+
+    public class CarriedItem : MonoBehaviour
+    {
+        public PickableItem carriedItem;
+
+        void OnDestroy()
+        {
+            if (carriedItem != null)
+                carriedItem.Drop();
+        }
+
+        public void Free()
+        {
+            carriedItem = null; //so not to Drop
+            Destroy(this);
+        }
+    }
+
 
     private bool pickedUp = false;
     private CarriedItem slotTaken = null;
@@ -69,11 +77,8 @@ public class PickableItem : MonoBehaviour, Resetable
         gameObject.transform.position = initial.position;
         RestoreTransform();
 
-        if (slotTaken != null)
-        {
-            slotTaken.carriedItem = null; //so that 'Drop' is not triggered
-            Destroy(slotTaken);
-        }
+        if (slotTaken != null) //can be reset without being picked up
+            slotTaken.Free();
 
         pickedUp = false;
     }
@@ -149,6 +154,7 @@ public class PickableItem : MonoBehaviour, Resetable
     void Drop()
     {
         RestoreTransform(new Vector3(0, 0, 0));
+        slotTaken.Free();
         pickedUp = false;
     }
 
