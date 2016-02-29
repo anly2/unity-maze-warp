@@ -14,7 +14,16 @@ public class PickableItem : MonoBehaviour, Resetable
         public Vector2 scale = new Vector2(0.8f, 0.8f);
     }
 
-    public class CarriedItem : MonoBehaviour { }
+    public class CarriedItem : MonoBehaviour
+    {
+        public PickableItem carriedItem;
+
+        void OnDestroy()
+        {
+            if (carriedItem != null)
+                carriedItem.Drop();
+        }
+    }
     
     struct StoredTransform
     {
@@ -36,6 +45,7 @@ public class PickableItem : MonoBehaviour, Resetable
     private StoredTransform initial;
 
     private bool pickedUp = false;
+    private CarriedItem slotTaken = null;
 
     void Awake()
     {
@@ -58,6 +68,13 @@ public class PickableItem : MonoBehaviour, Resetable
     {
         gameObject.transform.position = initial.position;
         RestoreTransform();
+
+        if (slotTaken != null)
+        {
+            slotTaken.carriedItem = null; //so that 'Drop' is not triggered
+            Destroy(slotTaken);
+        }
+
         pickedUp = false;
     }
 
@@ -97,7 +114,8 @@ public class PickableItem : MonoBehaviour, Resetable
         this.gameObject.transform.localScale = pickedUpTransform.scale;
         BringInfront(actor);
 
-        actor.AddComponent<CarriedItem>();
+        slotTaken = actor.AddComponent<CarriedItem>();
+        slotTaken.carriedItem = this;
 
         pickedUp = true;
     }
