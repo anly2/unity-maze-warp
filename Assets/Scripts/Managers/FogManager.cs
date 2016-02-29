@@ -58,7 +58,15 @@ public class FogManager : MonoBehaviour {
 
     public Coroutine Fog(Vector3 loc, float fadeTime)
     {
-        return Fog(loc).FadeIn(fadeTime).Start(this);
+        GameObject fogTile = GetFogTileAt(loc);
+        float initialOpacity = fogTile.GetOpacity();
+
+        if (fogTile == null)
+            fogTile = Fog(loc); //creates if not existing
+
+        fogTile.SetOpacity(initialOpacity);
+
+        return fogTile.FadeIn(fadeTime).Start(this);
     }
 
 
@@ -77,7 +85,9 @@ public class FogManager : MonoBehaviour {
 
     public Coroutine Unfog(Vector3 loc, float fadeTime)
     {
-        return Unfog(loc).FadeOut(fadeTime).Start(this);
+        GameObject fogTile = GetFogTileAt(loc);
+
+        return fogTile.FadeOut(fadeTime).Start(this);
     }
 
 
@@ -85,32 +95,46 @@ public class FogManager : MonoBehaviour {
     {
         List<GameObject> affected = new List<GameObject>();
 
-        for (int i = -1; i <= 1; i++)
+        foreach (Vector3 tileLoc in Neighbourhood(loc))
         {
-            for (int j = -1; j <= 1; j++)
-            {
-                Vector3 tileLoc = new Vector3(loc.x + j, loc.y + i, loc.z);
-                GameObject tile = Unfog(tileLoc);
+            GameObject tile = Unfog(tileLoc);
 
-                if (tile != null)
-                    affected.Add(tile);
-            }
+            if (tile != null)
+                affected.Add(tile);
         }
-
+        
         return affected.ToArray();
     }
 
     public Coroutine[] Explore(Vector3 loc, float fadeTime)
     {
-        GameObject[] affectedFog = Explore(loc);
+        List<Vector3> neighbourhood = Neighbourhood(loc);
 
-        Coroutine[] fadings = new Coroutine[affectedFog.Length];
+        Coroutine[] fadings = new Coroutine[neighbourhood.Count];
         int i = 0;
 
-        foreach (GameObject fogTile in affectedFog)
-            fadings[i++] = fogTile.FadeOut(fadeTime).Start(this);
+        foreach (Vector3 tileLoc in neighbourhood)
+        {
+            fadings[i++] = Unfog(tileLoc, fadeTime);
+        }
 
         return fadings;
+    }
+
+    List<Vector3> Neighbourhood(Vector3 loc)
+    {
+        List<Vector3> nearby = new List<Vector3>();
+
+        for (int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                Vector3 tileLoc = new Vector3(loc.x + j, loc.y + i, loc.z);
+                nearby.Add(tileLoc);
+            }
+        }
+
+        return nearby;
     }
 
 

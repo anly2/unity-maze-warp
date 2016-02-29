@@ -32,30 +32,40 @@ public static class FadeExtensions
     }
 
 
-    public static Animation FadeOut(this GameObject gameObject)
+    public static IEnumerator FadeOut(this GameObject gameObject)
     {
         return gameObject.FadeOut(Managers.Level.actorFadeOutDuration);
     }
 
-    public static Animation FadeOut(this GameObject gameObject, float duration)
+    public static IEnumerator FadeOut(this GameObject gameObject, float duration)
     {
-        return new Animation(delegate(float p)
+        float start = gameObject.GetOpacity();
+        float end = 0;
+        float diff = end - start;
+
+        return new Animation(delegate (float p)
         {
-            gameObject.SetOpacity(1-p);
-        }, duration);
+            gameObject.SetOpacity(start + p * diff);
+        }, duration)
+        .Then(() => gameObject.SetOpacity(end));
     }
 
 
-    public static Animation FadeIn(this GameObject gameObject)
+    public static IEnumerator FadeIn(this GameObject gameObject)
     {
         return gameObject.FadeIn(Managers.Level.actorFadeOutDuration);
     }
 
-    public static Animation FadeIn(this GameObject gameObject, float duration)
+    public static IEnumerator FadeIn(this GameObject gameObject, float duration)
     {
+        float start = gameObject.GetOpacity();
+        float end = 1;
+        float diff = end - start;
+
         return new Animation(delegate (float p)
         {
-            gameObject.SetOpacity(p);
-        }, duration);
+            gameObject.SetOpacity(start + p * diff);
+        }, duration)
+        .Then(() => gameObject.SetOpacity(end));
     }
 }
