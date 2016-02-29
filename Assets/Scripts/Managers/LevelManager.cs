@@ -73,7 +73,8 @@ public class LevelManager : MonoBehaviour {
             Camera camera = Camera.main;
             Vector3 initialPosition = camera.transform.position;
             Vector2 exitLocation = new Vector2(5, -7);
-            
+
+            Managers.Fog.Explore(new Vector2(0,0));
             Managers.Fog.Explore(initialPosition);
             Managers.Fog.Explore(exitLocation, t0 + t1/2);
 

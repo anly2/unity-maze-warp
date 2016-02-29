@@ -7,6 +7,7 @@ public class FogManager : MonoBehaviour {
 
     public GameObject fogObject;
     public string fogTileNameFormat = "Fog Tile at ({0:0}, {1:0})";
+    public float defaultExploredRadius = 3;
 
     void Awake()
     {
@@ -93,48 +94,49 @@ public class FogManager : MonoBehaviour {
 
     public GameObject[] Explore(Vector3 loc)
     {
-        List<GameObject> affected = new List<GameObject>();
+        float r = defaultExploredRadius - 0.01f; //avoid rounding erros
+        Rect area = new Rect(0,0, r, r);
+        area.center = loc;
 
-        foreach (Vector3 tileLoc in Neighbourhood(loc))
-        {
-            GameObject tile = Unfog(tileLoc);
+        return Explore(area);
 
-            if (tile != null)
-                affected.Add(tile);
-        }
-        
-        return affected.ToArray();
     }
 
     public Coroutine[] Explore(Vector3 loc, float fadeTime)
     {
-        List<Vector3> neighbourhood = Neighbourhood(loc);
+        float r = defaultExploredRadius - 0.01f; //avoid rounding erros
+        Rect area = new Rect(0, 0, r, r);
+        area.center = loc;
 
-        Coroutine[] fadings = new Coroutine[neighbourhood.Count];
-        int i = 0;
-
-        foreach (Vector3 tileLoc in neighbourhood)
-        {
-            fadings[i++] = Unfog(tileLoc, fadeTime);
-        }
-
-        return fadings;
+        return Explore(area, fadeTime);
     }
 
-    List<Vector3> Neighbourhood(Vector3 loc)
+    
+    public GameObject[] ExploreArea(Vector3 loc, float radius)
     {
-        List<Vector3> nearby = new List<Vector3>();
+        Rect area = new Rect(0, 0, radius, radius);
+        area.center = loc;
 
-        for (int i = -1; i <= 1; i++)
-        {
-            for (int j = -1; j <= 1; j++)
-            {
-                Vector3 tileLoc = new Vector3(loc.x + j, loc.y + i, loc.z);
-                nearby.Add(tileLoc);
-            }
-        }
+        return Explore(area);
+    }
 
-        return nearby;
+    public Coroutine[] ExploreArea(Vector3 loc, float radius, float fadeTime)
+    {
+        Rect area = new Rect(0, 0, radius, radius);
+        area.center = loc;
+
+        return Explore(area, fadeTime);
+    }
+
+
+    public GameObject[] Explore(Rect area)
+    {
+        return ApplyToArea<GameObject>(area, Unfog);
+    }
+
+    public Coroutine[] Explore(Rect area, float fadeTime)
+    {
+        return ApplyToArea<Coroutine>(area, tile => Unfog(tile, fadeTime));
     }
 
 
@@ -155,23 +157,30 @@ public class FogManager : MonoBehaviour {
 
     string NameFor(Vector3 loc)
     {
-        return string.Format(fogTileNameFormat, loc.x, loc.y);
+        return string.Format(fogTileNameFormat, Mathf.RoundToInt(loc.x), Mathf.RoundToInt(loc.y));
     }
 
 
-    /* Convenience functionality */
+    delegate R Action<R>(Vector3 loc);
 
-    public void FogAll()
+    R[] ApplyToArea<R>(Rect area, Action<R> action)
     {
+        List<R> affected = new List<R>();
 
+        float sx = 1;
+        float sy = 1;
+
+        for (float i = area.yMin; i < area.yMax; i += sy)
+        {
+            for (float j = area.xMin; j < area.xMax; j += sx)
+            {
+                R fogTile = action(new Vector2(j, i));
+
+                if (fogTile != null)
+                    affected.Add(fogTile);
+            }
+        }
+
+        return affected.ToArray();
     }
-
-    public void ExploreAll()
-    {
-
-    }
-
-
-    //public void FogArea(Area)
-    //public void ExploreArea(Area)
 }
