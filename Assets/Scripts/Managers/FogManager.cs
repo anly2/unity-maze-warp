@@ -43,7 +43,10 @@ public class FogManager : MonoBehaviour {
         GameObject tile = GetFogTileAt(loc, out tileName);
 
         if (tile != null)
+        {
+            tile.SetOpacity(1);
             return tile;
+        }
 
         tile = Instantiate(fogObject, loc, Quaternion.identity) as GameObject;
         tile.name = tileName;
