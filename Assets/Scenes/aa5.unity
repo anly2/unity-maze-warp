@@ -2397,7 +2397,7 @@ Transform:
   - {fileID: 1616987242}
   - {fileID: 7026805}
   m_Father: {fileID: 1110588905}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1 &932528657
 GameObject:
   m_ObjectHideFlags: 0
@@ -3300,6 +3300,47 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300052, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &1102213047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1102213048}
+  - 114: {fileID: 1102213049}
+  m_Layer: 0
+  m_Name: Fog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1102213048
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1102213047}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1110588905}
+  m_RootOrder: 1
+--- !u!114 &1102213049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1102213047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e33e8cc57d86f45b1da266d44ddc25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fogObject: {fileID: 169708, guid: 39850f0278538db4dbe46ebd857ff1ff, type: 2}
+  fogTileNameFormat: Fog Tile at ({0}, {1})
 --- !u!1 &1110588904
 GameObject:
   m_ObjectHideFlags: 0
@@ -3326,6 +3367,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 886178109}
+  - {fileID: 1102213048}
   - {fileID: 910491815}
   m_Father: {fileID: 0}
   m_RootOrder: 2

@@ -34,7 +34,6 @@ public static class Managers {
         }
     }
 
-    /*
     public static FogManager Fog
     {
         get
@@ -42,5 +41,4 @@ public static class Managers {
             return FogManager.instance;
         }
     }
-    */
 }
