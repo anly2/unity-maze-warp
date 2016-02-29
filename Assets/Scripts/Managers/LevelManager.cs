@@ -69,14 +69,13 @@ public class LevelManager : MonoBehaviour {
             float t0 = 0.5f; //motion to Exit
             float t1 = 1f;   //wait time at Exit
             float t2 = 1f;   //motion back to Player
-
-
+            
             Camera camera = Camera.main;
             Vector3 initialPosition = camera.transform.position;
             Vector2 exitLocation = new Vector2(5, -7);
 
             Managers.Fog.Explore(initialPosition);
-            Managers.Fog.Explore(exitLocation);
+            Managers.Fog.Explore(exitLocation, t0 + t1/2);
 
             camera.MotionTo(exitLocation, t0)
                 .Then(new WaitForSeconds(t1))

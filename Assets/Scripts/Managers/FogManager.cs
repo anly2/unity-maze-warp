@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class FogManager : MonoBehaviour {
@@ -55,6 +56,11 @@ public class FogManager : MonoBehaviour {
         return tile;
     }
 
+    public Coroutine Fog(Vector3 loc, float fadeTime)
+    {
+        return Fog(loc).FadeIn(fadeTime).Start(this);
+    }
+
 
     public GameObject Unfog(Vector3 loc)
     {
@@ -67,6 +73,11 @@ public class FogManager : MonoBehaviour {
         tile.SetOpacity(0);
 
         return tile;
+    }
+
+    public Coroutine Unfog(Vector3 loc, float fadeTime)
+    {
+        return Unfog(loc).FadeOut(fadeTime).Start(this);
     }
 
 
@@ -87,6 +98,19 @@ public class FogManager : MonoBehaviour {
         }
 
         return affected.ToArray();
+    }
+
+    public Coroutine[] Explore(Vector3 loc, float fadeTime)
+    {
+        GameObject[] affectedFog = Explore(loc);
+
+        Coroutine[] fadings = new Coroutine[affectedFog.Length];
+        int i = 0;
+
+        foreach (GameObject fogTile in affectedFog)
+            fadings[i++] = fogTile.FadeOut(fadeTime).Start(this);
+
+        return fadings;
     }
 
 

@@ -44,4 +44,18 @@ public static class FadeExtensions
             gameObject.SetOpacity(1-p);
         }, duration);
     }
+
+
+    public static Animation FadeIn(this GameObject gameObject)
+    {
+        return gameObject.FadeIn(Managers.Level.actorFadeOutDuration);
+    }
+
+    public static Animation FadeIn(this GameObject gameObject, float duration)
+    {
+        return new Animation(delegate (float p)
+        {
+            gameObject.SetOpacity(p);
+        }, duration);
+    }
 }
