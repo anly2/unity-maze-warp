@@ -6,12 +6,7 @@ TagManager:
   tags:
   - Ghost
   - Enemy
-  - Friendly
-  - Lever
-  - Banana
-  - Bomb
-  - Door
-  - Wall
+  - Fog
   - Destructible
   layers:
   - Default
@@ -24,7 +19,7 @@ TagManager:
   - 
   - Floor
   - Blocking Layer
-  - 
+  - Fog
   - 
   - 
   - 
@@ -62,6 +57,6 @@ TagManager:
   - name: Actor
     uniqueID: 3375702175
     locked: 0
-  - name: Door
+  - name: Fog
     uniqueID: 3219835091
     locked: 0
