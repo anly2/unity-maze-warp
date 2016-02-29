@@ -59,8 +59,6 @@ public class LevelManager : MonoBehaviour {
         Managers.UI.ShowPreScreen()
             .Then(delegate ()
         {
-            Managers.Turn.TurnInProgress = true;
-
             float t0 = 0.5f; //motion to Exit
             float t1 = 1f;   //wait time at Exit
             float t2 = 1f;   //motion back to Player
@@ -179,6 +177,7 @@ public class LevelManager : MonoBehaviour {
     // Player finished the level!
     public void Complete()
     {
+        Managers.Turn.TurnInProgress = true;
         Managers.UI.ShowPostScreen();
     }
 

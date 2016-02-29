@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour {
     private LabelledValue vTurnCount;
     private LabelledValue vTimeElapsed;
 
+    private bool showingScreen = false;
+
     void Awake()
     {
         if (instance == null)
@@ -57,6 +59,7 @@ public class UIManager : MonoBehaviour {
     public IEnumerator ShowPreScreen(string message)
     {
         Managers.Turn.TurnInProgress = true;
+        showingScreen = true;
 
         vMessage.text = message;
         animator.SetTrigger("Pre-Screen Ready");
@@ -66,12 +69,12 @@ public class UIManager : MonoBehaviour {
 
     IEnumerator WaitPreScreenHidingDone()
     {
-        while (Managers.Turn.TurnInProgress)
+        while (showingScreen)
             yield return null;
     }
 
     void DoneHidingPreScreen() {
-        Managers.Turn.TurnInProgress = false;
+        showingScreen = false;
     }
 
 
@@ -82,7 +85,7 @@ public class UIManager : MonoBehaviour {
 
     public void ShowPostScreen(string message)
     {
-        Managers.Turn.TurnInProgress = true;
+        showingScreen = true;
 
         vMessage.text = message;
         UpdateStats();
