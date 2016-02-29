@@ -2267,7 +2267,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 471544, guid: 89be6ec96bd448b489c44e5c196f69c5, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6112620, guid: 89be6ec96bd448b489c44e5c196f69c5, type: 2}
       propertyPath: m_Enabled
@@ -2279,11 +2279,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 6112620, guid: 89be6ec96bd448b489c44e5c196f69c5, type: 2}
       propertyPath: m_Size.x
-      value: .5
+      value: .25
       objectReference: {fileID: 0}
     - target: {fileID: 6112620, guid: 89be6ec96bd448b489c44e5c196f69c5, type: 2}
       propertyPath: m_Size.y
-      value: .5
+      value: .25
       objectReference: {fileID: 0}
     - target: {fileID: 2040034, guid: 89be6ec96bd448b489c44e5c196f69c5, type: 2}
       propertyPath: m_ClearFlags

@@ -126,7 +126,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: .5, y: .5}
+  m_Size: {x: .25, y: .25}
 --- !u!81 &8168900
 AudioListener:
   m_ObjectHideFlags: 1
@@ -242,11 +242,11 @@ Prefab:
       objectReference: {fileID: 172740, guid: abdb4d9490d9a8341ad3098025fbea12, type: 2}
     - target: {fileID: 0}
       propertyPath: m_Size.x
-      value: .5
+      value: .25
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Size.y
-      value: .5
+      value: .25
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.x
