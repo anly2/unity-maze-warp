@@ -9,6 +9,8 @@ public class FogManager : MonoBehaviour {
     public string fogTileNameFormat = "Fog Tile at ({0:0}, {1:0})";
     public float defaultExploredRadius = 3;
 
+    private float tol = 0.2f; //compensates for rounding errors
+
     void Awake()
     {
         if (instance == null)
@@ -94,7 +96,7 @@ public class FogManager : MonoBehaviour {
 
     public GameObject[] Explore(Vector3 loc)
     {
-        float r = defaultExploredRadius - 0.01f; //avoid rounding erros
+        float r = defaultExploredRadius - tol; //avoid rounding erros
         Rect area = new Rect(0,0, r, r);
         area.center = loc;
 
@@ -104,7 +106,7 @@ public class FogManager : MonoBehaviour {
 
     public Coroutine[] Explore(Vector3 loc, float fadeTime)
     {
-        float r = defaultExploredRadius - 0.01f; //avoid rounding erros
+        float r = defaultExploredRadius - tol; //avoid rounding erros
         Rect area = new Rect(0, 0, r, r);
         area.center = loc;
 
