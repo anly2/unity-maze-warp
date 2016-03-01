@@ -114,4 +114,10 @@ public class UIManager : MonoBehaviour {
 
         return formatted;
     }
+
+
+    public void SkipScreen()
+    {
+        animator.SetTrigger("Cancel Screen");
+    }
 }

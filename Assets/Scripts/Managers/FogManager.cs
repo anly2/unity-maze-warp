@@ -9,7 +9,6 @@ public class FogManager : MonoBehaviour {
     public string fogTileNameFormat = "Fog Tile at ({0:0}, {1:0})";
     public int defaultExploredRadius = 1;
 
-    private float tol = 0.2f; //compensates for rounding errors
 
     void Awake()
     {

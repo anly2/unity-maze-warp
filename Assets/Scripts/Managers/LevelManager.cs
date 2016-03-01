@@ -63,27 +63,57 @@ public class LevelManager : MonoBehaviour {
 
     void Intro()
     {
+        //Late-bindings
+        ButtonListener lCancelListener = null; //later-defined
+        CoroutineExtentions.Action lExplore = null; //later-defined
+        CoroutineExtentions.Action lFinishIntro = null; //later-defined
+        Coroutine lIntro = null; //later-defined, changes multiple times
+
+        //Timing settings
+        float t0 = 0.5f; //motion to Exit
+        float t1 = 1f;   //wait time at Exit
+        float t2 = 1f;   //motion back to Player
+
+        Camera camera = Camera.main;
+        Vector3 initialPosition = camera.transform.position;
+        Vector2 exitLocation = new Vector2(5, -7);
+
+        lExplore = () => {
+            Managers.Fog.Explore(new Vector2(0, 0));
+            Managers.Fog.Explore(initialPosition);
+            Managers.Fog.Explore(exitLocation, t0 + t1 / 2);
+        };
+
+        lFinishIntro = () => {
+            camera.transform.position = initialPosition;
+            Managers.Turn.TurnInProgress = false;
+            lCancelListener.Remove();
+        };
+
+
+        lIntro = //carries onto next lines
         Managers.UI.ShowPreScreen()
             .Then(delegate ()
         {
-            float t0 = 0.5f; //motion to Exit
-            float t1 = 1f;   //wait time at Exit
-            float t2 = 1f;   //motion back to Player
-            
-            Camera camera = Camera.main;
-            Vector3 initialPosition = camera.transform.position;
-            Vector2 exitLocation = new Vector2(5, -7);
+            lExplore();
 
-            Managers.Fog.Explore(new Vector2(0,0));
-            Managers.Fog.Explore(initialPosition);
-            Managers.Fog.Explore(exitLocation, t0 + t1/2);
-
-            camera.MotionTo(exitLocation, t0)
+            lIntro = camera.MotionTo(exitLocation, t0)
                 .Then(new WaitForSeconds(t1))
-                .Then(() => camera.MotionTo(initialPosition, t2).Start(this))
-                .Then(() => Managers.Turn.TurnInProgress = false)
+                .Then(() => lIntro = camera.MotionTo(initialPosition, t2).Start(this)) //.MotionTo must not be eval'd immediately!
+                .Then(lFinishIntro)
                 .Start(this);
+
         }).Start(this);
+
+        lCancelListener = this.OnButtonDown("Cancel", () => {
+            StopCoroutine(lIntro);
+            lExplore();
+
+            if (lFinishIntro != null)
+                lFinishIntro();
+            else
+                Managers.UI.SkipScreen();
+        });
     }
 
    
