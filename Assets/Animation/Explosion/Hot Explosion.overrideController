@@ -1,0 +1,12 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hot Explosion
+  m_Controller: {fileID: 9100000, guid: e401432518db4234abfecf9623e0e66e, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 172704493e5ccdc4fa51500aa4d3babd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 18d7d6bc18f478c42b760dffa9bdc544, type: 2}

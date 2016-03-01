@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 437032}
   - 212: {fileID: 21222248}
   - 61: {fileID: 6149292}
-  - 114: {fileID: 11474634}
+  - 114: {fileID: 11441608}
   m_Layer: 8
   m_Name: Bomb
   m_TagString: Item
@@ -37,13 +37,14 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140776}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
---- !u!114 &11474634
+--- !u!114 &11441608
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -51,12 +52,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 140776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a42266354dc90b544861c59720bb09c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0505bf7dc9e062d4ebf4acf70c5e83a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUpTransform:
-    offset: {x: .200000003, y: -.300000012}
-    scale: {x: .800000012, y: .800000012}
+    offset: {x: 0.2, y: -0.3}
+    scale: {x: 0.8, y: 0.8}
+  explosionPeripheralObject: {fileID: 104210, guid: bf6c19cbe645b454ebcd9c7409545792,
+    type: 2}
+  explosionEpicentralObject: {fileID: 151190, guid: 4cd624d168d8a4c4da31b8fb25d84862,
+    type: 2}
+  fuseTurnDuration: 3
+  explosionRadius: 2
 --- !u!212 &21222248
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -75,14 +82,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -214393483
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300010, guid: 804ef1464f8a68a4db1148d673f08bc5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

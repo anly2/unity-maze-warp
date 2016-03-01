@@ -5,15 +5,21 @@ using System.Collections.Generic;
 
 public class Bomb : PickableItem {
 
+    [Header("Explosion Prefabs")]
+    public GameObject explosionPeripheralObject;
+    public GameObject explosionEpicentralObject;
+
+    [Header("Bomb Properties")]
     public int fuseTurnDuration = 3;
-    public int explosionRadius = 2;
+    //public int explosionRadius = 2;
 
     private Coroutine armed = null;
 
 
     protected override void Reset()
     {
-        StopCoroutine(armed);
+        if (armed != null)
+            StopCoroutine(armed);
         armed = null;
 
         gameObject.SetActive(true);
@@ -38,19 +44,19 @@ public class Bomb : PickableItem {
     {
         yield return new WaitForTurns(fuseTurnDuration);
 
+        Explode();
+        
+        yield return new WaitForSeconds(Managers.Turn.turnDuration);
+
+        Vector3 loc = transform.position;
         gameObject.SetActive(false);
-        Debug.Log("EXPLODE");
 
-        //#! explosion effect
-
-        GameObject[] affected = GetAffected();
+        GameObject[] affected = GetAffected(loc);
 
         foreach (GameObject thing in affected)
         {
             if (!isDestructible(thing))
                 continue;
-
-            Debug.Log("Damaged: " + thing);
 
             if (thing.tag == "Player")
             {
@@ -58,39 +64,67 @@ public class Bomb : PickableItem {
                 yield break;
             }
 
-            Resetable resetable = thing.GetComponent<Resetable>();
+            Door door = thing.GetComponent<Door>();
+            if (door != null)
+            {
+                door.Open();
+                continue;
+            }
 
+            Resetable resetable = thing.GetComponent<Resetable>();
             if (resetable != null)
+            {
                 resetable.Reset();
-            else
-                thing.SetActive(false);
+                continue;
+            }
+
+            //else
+            thing.SetActive(false);
         }
     }
 
-    GameObject[] GetAffected()
+    void Explode()
+    {
+        Vector3 bombLoc = transform.position;
+        Vector3[] affected = GetAffectedLocations(bombLoc);
+
+        foreach (Vector3 loc in affected)
+        {
+            GameObject explosion = (loc == bombLoc) ? explosionEpicentralObject : explosionPeripheralObject;
+            Instantiate(explosion, loc, Quaternion.identity);
+        }
+    }
+
+
+    Vector3[] GetAffectedLocations(Vector3 loc)
+    {
+        Vector3[] affected = {
+            new Vector3(loc.x - 1, loc.y),
+            new Vector3(loc.x + 1, loc.y),
+            loc,
+            new Vector3(loc.x, loc.y - 1),
+            new Vector3(loc.x, loc.y + 1),
+        };
+        return affected;
+    }
+
+    GameObject[] GetAffected(Vector3 loc)
     {
         /*
         float tol = 0.5f; //so not to catch tiles by just a pixel or so (same reason Actor colliders are not of size 1)
         return Physics2D.OverlapCircleAll(transform.position, explosionRadius - tol);
         */
 
-        Vector3 loc = transform.position;
+        Vector3[] locs = GetAffectedLocations(loc);
         List<GameObject> affected = new List<GameObject>();
-
-        Vector3[] locs = {
-            new Vector3(loc.x - 1, loc.y),
-            new Vector3(loc.x,     loc.y),
-            new Vector3(loc.x + 1, loc.y),
-            new Vector3(loc.x, loc.y - 1),
-            new Vector3(loc.x, loc.y + 1),
-        };
 
         foreach (Vector3 p in locs)
         {
-            Collider2D collider = Physics2D.OverlapPoint(p);
+            Collider2D[] colliders = Physics2D.OverlapPointAll(p);
 
-            if (collider != null)
-                affected.Add(collider.gameObject);
+            foreach (Collider2D collider in colliders)
+                if (collider != null)
+                    affected.Add(collider.gameObject);
         }
 
         return affected.ToArray();
