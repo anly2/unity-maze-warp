@@ -1,18 +1,26 @@
 ﻿using UnityEngine;
 using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Bomb : PickableItem {
 
     public int fuseTurnDuration = 3;
     public int explosionRadius = 2;
 
-    private bool armed = false;
+    private Coroutine armed = null;
 
+
+    protected override void Reset()
+    {
+        StopCoroutine(armed);
+        armed = null;
+        base.Reset();
+    }
 
     protected override void PickUp(GameObject actor)
     {
-        if (!armed)
+        if (armed == null)
             base.PickUp(actor);
     }
 
@@ -20,12 +28,11 @@ public class Bomb : PickableItem {
     {
         Drop();
 
-        StartCoroutine(Arm());
+        armed = StartCoroutine(Arm());
     }
 
     IEnumerator Arm()
     {
-        armed = true;
         Debug.Log("Arming bomb. " + fuseTurnDuration + " turns to explosion.");
 
         yield return new WaitForTurns(fuseTurnDuration);
@@ -34,14 +41,14 @@ public class Bomb : PickableItem {
 
         //#! explosion effect
 
-        float tol = 0.5f; //so not to catch tiles by just a pixel or so (same reason Actor colliders are not of size 1)
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius-tol);
+        GameObject[] affected = GetAffected();
 
-        foreach (Collider2D collider in hitColliders)
+        foreach (GameObject thing in affected)
         {
-            GameObject thing = collider.gameObject;
             if (!isDestructible(thing))
                 continue;
+
+            Debug.Log("Damaged: " + thing);
 
             if (thing.tag == "Player")
             {
@@ -58,8 +65,37 @@ public class Bomb : PickableItem {
         }
     }
 
+    GameObject[] GetAffected()
+    {
+        /*
+        float tol = 0.5f; //so not to catch tiles by just a pixel or so (same reason Actor colliders are not of size 1)
+        return Physics2D.OverlapCircleAll(transform.position, explosionRadius - tol);
+        */
 
-    static string[] destructibleTags = { "Destructible", "Monkey", "Ghost", "Player" };
+        Vector3 loc = transform.position;
+        List<GameObject> affected = new List<GameObject>();
+
+        Vector3[] locs = {
+            new Vector3(loc.x - 1, loc.y),
+            new Vector3(loc.x,     loc.y),
+            new Vector3(loc.x + 1, loc.y),
+            new Vector3(loc.x, loc.y - 1),
+            new Vector3(loc.x, loc.y + 1),
+        };
+
+        foreach (Vector3 p in locs)
+        {
+            Collider2D collider = Physics2D.OverlapPoint(p);
+
+            if (collider != null)
+                affected.Add(collider.gameObject);
+        }
+
+        return affected.ToArray();
+    }
+
+
+    static string[] destructibleTags = { "Destructible", "Enemy", "Ghost", "Player" };
     static bool isDestructible(GameObject gameObject)
     {
         return (destructibleTags.Contains(gameObject.tag));

@@ -72,7 +72,13 @@ public class PickableItem : MonoBehaviour, Resetable
         (this as Resetable).Unregister();
     }
 
+
     void Resetable.Reset()
+    {
+        this.Reset();
+    }
+
+    protected virtual void Reset()
     {
         gameObject.transform.position = initial.position;
         RestoreTransform();
