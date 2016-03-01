@@ -16,8 +16,6 @@ public class TurnManager : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     void OnDestroy()
@@ -49,9 +47,9 @@ public class TurnManager : MonoBehaviour {
         turnListeners.Add(listener);
     }
 
-    public bool RemoveTurnBasedListener(TurnBased listener)
+    public void RemoveTurnBasedListener(TurnBased listener)
     {
-        return turnListeners.Remove(listener);
+        turnListeners.Remove(listener);
     }
 
 
@@ -74,7 +72,8 @@ public class TurnManager : MonoBehaviour {
 
     void NotifyTurnListeners()
     {
-        foreach (TurnBased listener in turnListeners)
+        var listeners = turnListeners.ToArray(); //gives us a snapshot
+        foreach (TurnBased listener in listeners)
             listener.Turn();
     }
 

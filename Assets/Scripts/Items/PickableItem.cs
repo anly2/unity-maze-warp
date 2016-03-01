@@ -112,7 +112,7 @@ public class PickableItem : MonoBehaviour, Resetable
     }
 
 
-    void PickUp(GameObject actor)
+    protected virtual void PickUp(GameObject actor)
     {
         this.gameObject.transform.parent = actor.transform;
         this.gameObject.transform.localPosition = pickedUpTransform.offset;
@@ -151,12 +151,12 @@ public class PickableItem : MonoBehaviour, Resetable
     }
 
 
-    void Drop()
+    protected virtual void Drop()
     {
         RestoreTransform(new Vector3(0, 0, 0));
         slotTaken.Free();
         pickedUp = false;
     }
 
-    void Activate() { }
+    protected virtual void Activate() { }
 }

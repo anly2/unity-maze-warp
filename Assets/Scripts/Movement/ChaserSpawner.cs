@@ -38,7 +38,6 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
 
     void Dispose()
     {
-        //Managers.Turn.RemoveTurnBasedListener(this);
         Destroy(this);
     }
 

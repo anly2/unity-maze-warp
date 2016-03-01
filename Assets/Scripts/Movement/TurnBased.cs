@@ -16,11 +16,44 @@ public static class TurnBasedExtensions
         return true;
     }
 
-    public static bool Unregister(this TurnBased self)
+    public static void Unregister(this TurnBased self)
     {
         if (Managers.Turn == null)
-            return false;
+            return;
 
-        return Managers.Turn.RemoveTurnBasedListener(self);
+        Managers.Turn.RemoveTurnBasedListener(self);
     }
+}
+
+
+public class WaitForTurns : YieldInstruction, IEnumerator, TurnBased
+{
+    private int turnDelay;
+
+    public WaitForTurns(int turns)
+    {
+        turnDelay = turns;
+        (this as TurnBased).Register();
+    }
+    
+    public void Turn()
+    {
+        if (turnDelay-- < 0)
+            (this as TurnBased).Unregister();
+    }
+
+    public bool MoveNext()
+    {
+        return (turnDelay > 0);
+    }
+
+
+    public object Current { get { return null; } }
+
+    public void Reset() { }
+}
+
+public class WaitNextTurn : WaitForTurns
+{
+    public WaitNextTurn() : base(0) { }
 }
