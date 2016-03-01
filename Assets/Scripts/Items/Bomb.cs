@@ -15,6 +15,9 @@ public class Bomb : PickableItem {
     {
         StopCoroutine(armed);
         armed = null;
+
+        gameObject.SetActive(true);
+
         base.Reset();
     }
 
@@ -33,10 +36,9 @@ public class Bomb : PickableItem {
 
     IEnumerator Arm()
     {
-        Debug.Log("Arming bomb. " + fuseTurnDuration + " turns to explosion.");
-
         yield return new WaitForTurns(fuseTurnDuration);
 
+        gameObject.SetActive(false);
         Debug.Log("EXPLODE");
 
         //#! explosion effect
