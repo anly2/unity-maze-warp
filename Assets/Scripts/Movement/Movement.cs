@@ -28,6 +28,13 @@ public class Movement : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Linecast(transform.position, dest, blockingLayer);
         return (hit.transform == null);
+    } // can't use this one since the monkey position stays the same. what I change is the node's position
+
+    // Added by Lewis 
+    public bool CanMove(Vector3 start, Vector3 dest)
+    {
+        RaycastHit2D hit = Physics2D.Linecast(start, dest, blockingLayer);
+        return (hit.transform == null);
     }
 
     Coroutine SmoothMovement(Vector3 end)
