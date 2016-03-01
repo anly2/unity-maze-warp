@@ -596,6 +596,26 @@ SpriteRenderer:
 Transform:
   m_PrefabParentObject: {fileID: 468626, guid: 665e6b92bf49ec7458dc881ea96ea3cc, type: 2}
   m_PrefabInternal: {fileID: 806201383}
+--- !u!1 &230351745 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 140776, guid: 3e441b76906c5de42bb029326d7aa26f, type: 2}
+  m_PrefabInternal: {fileID: 660071876}
+--- !u!114 &230351746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 230351745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0505bf7dc9e062d4ebf4acf70c5e83a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickedUpTransform:
+    offset: {x: .200000003, y: -.300000012}
+    scale: {x: .800000012, y: .800000012}
+  fuseTurnDuration: 3
+  explosionRadius: 2
 --- !u!1 &290244620
 GameObject:
   m_ObjectHideFlags: 0
@@ -1679,7 +1699,8 @@ Prefab:
       propertyPath: m_Name
       value: Bomb (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11474634, guid: 3e441b76906c5de42bb029326d7aa26f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3e441b76906c5de42bb029326d7aa26f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &715316870
