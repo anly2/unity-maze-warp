@@ -106,9 +106,9 @@ public class LevelManager : MonoBehaviour {
                     .Then(new WaitForSeconds(durationOfStareAtExit))
                     .Then(() =>
                     { //.MotionTo must not be eval'd immediately
-                        lIntro = camera.MotionTo(initialPosition,
-                            durationOfCameraMotionToSpawn)
-                            .Start(this);
+                        return lIntro = camera.MotionTo(initialPosition,
+                                durationOfCameraMotionToSpawn)
+                                .Start(this);
                     })
                     .Then(lFinishIntro)
                     .Start(this);
