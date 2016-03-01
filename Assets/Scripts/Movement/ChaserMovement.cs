@@ -32,6 +32,7 @@ public class ChaserMovement : Movement, TurnBased, Resetable {
 
     void Resetable.Reset()
     {
+        Destroy(GetComponent<KillByContact>());
         gameObject.FadeOut()
             .Then(() => Destroy(gameObject))
             .Start(this);
