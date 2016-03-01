@@ -5,7 +5,12 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
 
+    [Header("Global Settings")]
+    public float actorFadeOutDuration = 1f;
+
+    [Header("Ad hoc 'Main Menu'")]
     public GameObject firstLevel;
+
 
 	void Awake()
     {

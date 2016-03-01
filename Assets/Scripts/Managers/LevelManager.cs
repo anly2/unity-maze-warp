@@ -6,22 +6,32 @@ using System;
 public class LevelManager : MonoBehaviour {
     public static LevelManager instance = null;
 
+    [Header("Level properties")]
     public string Name;
-    public List<Transform> playerSpawnPlaces;
+
+    [Header("Level Intro settings")]
+    public float durationOfCameraMotionToExit = 0.5f;
+    public float durationOfStareAtExit = 1f;
+    public float durationOfCameraMotionToSpawn = 1f;
+
+    [Header("Gameplay Settings")]
     public int monkeySpawnTurnDelay = 3;
+
+    [Header("Prefabs to Use")]
     public GameObject monkeyObject;
     public GameObject ghostObject;
-    public float actorFadeOutDuration = 1;
 
     [HideInInspector]
     public Statistics Stats { get; private set; }
     [HideInInspector]
     public Vector3 PlayerSpawn { get { return playerSpawns.Current; } }
 
+    private GameObject player; //for easy access
+    private GameObject exit;
+    private IEnumerator<Vector3> playerSpawns; //cycling
+
     private List<Resetable> resetables;
     private List<GhostInfo> ghostData;
-    private IEnumerator<Vector3> playerSpawns; //converted + cycling
-    private GameObject player; //for easy access
 
 
     void Awake()
@@ -38,9 +48,6 @@ public class LevelManager : MonoBehaviour {
         ghostData = new List<GhostInfo>();
 
         Stats = new Statistics();
-
-        playerSpawns = GetPlayerSpawnsEnumeration();
-        playerSpawns.MoveNext();
     }
 
     void OnDestroy()
@@ -55,7 +62,12 @@ public class LevelManager : MonoBehaviour {
 
         player = GameObject.FindWithTag("Player");
 
-        Intro();
+        exit = GameObject.FindWithTag("Exit");
+
+        playerSpawns = GetPlayerSpawnsEnumeration();
+        playerSpawns.MoveNext();
+
+        Invoke("Intro", 0); //queue the Intro, after all Start()s have been called
     }
 
 
@@ -69,19 +81,14 @@ public class LevelManager : MonoBehaviour {
         CoroutineExtentions.Action lFinishIntro = null; //later-defined
         Coroutine lIntro = null; //later-defined, changes multiple times
 
-        //Timing settings
-        float t0 = 0.5f; //motion to Exit
-        float t1 = 1f;   //wait time at Exit
-        float t2 = 1f;   //motion back to Player
-
         Camera camera = Camera.main;
         Vector3 initialPosition = camera.transform.position;
-        Vector2 exitLocation = new Vector2(5, -7);
+        Vector2 exitLocation = exit.transform.position;
 
         lExplore = () => {
             Managers.Fog.Explore(new Vector2(0, 0));
             Managers.Fog.Explore(initialPosition);
-            Managers.Fog.Explore(exitLocation, t0 + t1 / 2);
+            Managers.Fog.Explore(exitLocation, (durationOfCameraMotionToExit + durationOfStareAtExit / 2));
         };
 
         lFinishIntro = () => {
@@ -97,9 +104,9 @@ public class LevelManager : MonoBehaviour {
         {
             lExplore();
 
-            lIntro = camera.MotionTo(exitLocation, t0)
-                .Then(new WaitForSeconds(t1))
-                .Then(() => lIntro = camera.MotionTo(initialPosition, t2).Start(this)) //.MotionTo must not be eval'd immediately!
+            lIntro = camera.MotionTo(exitLocation, durationOfCameraMotionToExit)
+                .Then(new WaitForSeconds(durationOfStareAtExit))
+                .Then(() => lIntro = camera.MotionTo(initialPosition, durationOfCameraMotionToSpawn).Start(this)) //.MotionTo must be eval'd later
                 .Then(lFinishIntro)
                 .Start(this);
 
@@ -172,17 +179,47 @@ public class LevelManager : MonoBehaviour {
 
     IEnumerator<Vector3> GetPlayerSpawnsEnumeration()
     {
-        IEnumerator<Transform> places = playerSpawnPlaces.GetEnumerator();
+        List<Vector3> spawns = GetSpawns();
 
+        if (spawns.Count == 0)
+            yield break;
+
+
+        IEnumerator<Vector3> places = spawns.GetEnumerator();
+        
         while (true)
         {
             while (places.MoveNext())
-                yield return places.Current.position;
+                yield return places.Current;
 
             places.Reset();
         }
     }
 
+    List<Vector3> GetSpawns()
+    {
+        List<Vector3> points = new List<Vector3>();
+        GameObject[] spawns = GameObject.FindGameObjectsWithTag("Spawn Point");
+        
+        foreach(GameObject spawn in spawns)
+        {
+            try {
+                int i = spawn.GetComponent<Spawn>().spawnIndex;
+
+                i %= spawns.Length;
+
+                if (i < 0)
+                    i = spawns.Length - i;
+
+                points.Insert(i, spawn.transform.position);
+            }
+            catch (Exception) {
+                points.Add(spawn.transform.position);
+            }
+        }
+        
+        return points;
+    }
 
 
     /* Manage Subscriptions */
@@ -240,7 +277,7 @@ public class LevelManager : MonoBehaviour {
         foreach (Resetable thing in resetables)
             thing.Reset();
 
-        yield return new WaitForSeconds(actorFadeOutDuration);
+        yield return new WaitForSeconds(Managers.Game.actorFadeOutDuration);
     }
 
     void StartGhostSpawners()

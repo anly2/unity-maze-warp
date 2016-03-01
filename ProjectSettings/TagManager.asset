@@ -8,6 +8,10 @@ TagManager:
   - Enemy
   - Fog
   - Destructible
+  - Spawn Point
+  - Exit
+  - Wall
+  - Item
   layers:
   - Default
   - TransparentFX

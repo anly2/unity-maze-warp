@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: d2e882c6c8709a741ada935dd218cc5a
-timeCreated: 1456601327
+timeCreated: 1456847472
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - monkeyObject: {fileID: 172740, guid: abdb4d9490d9a8341ad3098025fbea12, type: 2}
+  - ghostObject: {fileID: 135872, guid: 12b69ed46330fda4c8b2789e6fbb93f4, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

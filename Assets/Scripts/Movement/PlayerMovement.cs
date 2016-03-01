@@ -12,7 +12,7 @@ public class PlayerMovement : Movement, Resetable{
     void Start()
     {
         (this as Resetable).Register();
-        Spawn();
+        Invoke("Spawn", 0); //queue the Spawn after all Start()s have been called
     }
 
     void OnDestroy()

@@ -34,7 +34,7 @@ public static class FadeExtensions
 
     public static IEnumerator FadeOut(this GameObject gameObject)
     {
-        return gameObject.FadeOut(Managers.Level.actorFadeOutDuration);
+        return gameObject.FadeOut(Managers.Game.actorFadeOutDuration);
     }
 
     public static IEnumerator FadeOut(this GameObject gameObject, float duration)
@@ -53,7 +53,7 @@ public static class FadeExtensions
 
     public static IEnumerator FadeIn(this GameObject gameObject)
     {
-        return gameObject.FadeIn(Managers.Level.actorFadeOutDuration);
+        return gameObject.FadeIn(Managers.Game.actorFadeOutDuration);
     }
 
     public static IEnumerator FadeIn(this GameObject gameObject, float duration)

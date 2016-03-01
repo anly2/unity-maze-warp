@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11449320}
   m_Layer: 0
   m_Name: Lever
-  m_TagString: Lever
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,6 +131,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: dcac95a2aff423b4e82fce75b9890b4b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 121050}

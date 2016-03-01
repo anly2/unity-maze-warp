@@ -13,7 +13,7 @@ GameObject:
   - 114: {fileID: 11474634}
   m_Layer: 8
   m_Name: Bomb
-  m_TagString: Bomb
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +104,7 @@ Prefab:
       objectReference: {fileID: 106920, guid: 632e823ba331aae42bcdbc18eb7a2227, type: 2}
     - target: {fileID: 0}
       propertyPath: m_TagString
-      value: Bomb
+      value: Item
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.x
