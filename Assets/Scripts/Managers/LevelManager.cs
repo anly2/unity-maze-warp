@@ -86,7 +86,6 @@ public class LevelManager : MonoBehaviour {
         Vector2 exitLocation = exit.transform.position;
 
         lExplore = () => {
-            Managers.Fog.Explore(new Vector2(0, 0));
             Managers.Fog.Explore(initialPosition);
             Managers.Fog.Explore(exitLocation, (durationOfCameraMotionToExit + durationOfStareAtExit / 2));
         };
@@ -98,19 +97,23 @@ public class LevelManager : MonoBehaviour {
         };
 
 
-        lIntro = //carries onto next lines
-        Managers.UI.ShowPreScreen()
+        lIntro = Managers.UI.ShowPreScreen()
             .Then(delegate ()
-        {
-            lExplore();
+            {
+                lExplore();
 
-            lIntro = camera.MotionTo(exitLocation, durationOfCameraMotionToExit)
-                .Then(new WaitForSeconds(durationOfStareAtExit))
-                .Then(() => lIntro = camera.MotionTo(initialPosition, durationOfCameraMotionToSpawn).Start(this)) //.MotionTo must be eval'd later
-                .Then(lFinishIntro)
-                .Start(this);
+                lIntro = camera.MotionTo(exitLocation, durationOfCameraMotionToExit)
+                    .Then(new WaitForSeconds(durationOfStareAtExit))
+                    .Then(() =>
+                    { //.MotionTo must not be eval'd immediately
+                        lIntro = camera.MotionTo(initialPosition,
+                            durationOfCameraMotionToSpawn)
+                            .Start(this);
+                    })
+                    .Then(lFinishIntro)
+                    .Start(this);
 
-        }).Start(this);
+            }).Start(this);
 
         lCancelListener = this.OnButtonDown("Cancel", () => {
             StopCoroutine(lIntro);
