@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class Banana : PickableItem
 {
+    public Collider2D innerCollider;
+
     private List<MonkeyMovement> attracted = new List<MonkeyMovement>();
     private Coroutine fadeOut = null;
 
@@ -48,7 +50,7 @@ public class Banana : PickableItem
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-        if (Vector3.Distance(transform.position, other.transform.position) <= 1)
+        if (innerCollider.IsTouching(other))
         {
             base.OnTriggerEnter2D(other); //handles picking up
             return;
