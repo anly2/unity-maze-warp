@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Bomb : PickableItem {
 
@@ -9,12 +10,14 @@ public class Bomb : PickableItem {
     public GameObject explosionPeripheralObject;
     public GameObject explosionEpicentralObject;
 
+    [Header("Flame Prefabs")]
+    public GameObject flameObject;
+
     [Header("Bomb Properties")]
     public int fuseTurnDuration = 3;
     //public int explosionRadius = 2;
 
     private Coroutine armed = null;
-
 
     protected override void Reset()
     {
@@ -47,6 +50,8 @@ public class Bomb : PickableItem {
 
     IEnumerator Arm()
     {
+        LitFlame();
+
         yield return new WaitForTurns(fuseTurnDuration);
 
         Explode();
@@ -86,6 +91,12 @@ public class Bomb : PickableItem {
             //else
             thing.SetActive(false);
         }
+    }
+
+    void LitFlame()
+    {
+        flameObject.transform.parent = transform;
+        Instantiate(flameObject, flameObject.transform.position, Quaternion.identity);
     }
 
     void Explode()
