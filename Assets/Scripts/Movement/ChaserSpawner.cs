@@ -74,7 +74,7 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
         chaserMovement.target = targetTrajectory.GetEnumaration();
 
         // Added by Lewis 
-        chaserMovement.target = PathFinding.FindPath(chaserMovement, targetPosition);
+        chaserMovement.target = PathFinding.FindPath(chaserMovement, targetPosition).GetEnumerator();
 
     }
 }
