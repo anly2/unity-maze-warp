@@ -23,10 +23,6 @@ public class MonkeyMovement : ChaserMovement {
     private Movement targetMovement = null;
     private IEnumerator<Vector3> targetPath = null;
 
-    // Use this for initialization
-    void Start() {
-        (this as TurnBased).Register();
-    }
 
     protected override void Turn()
     {

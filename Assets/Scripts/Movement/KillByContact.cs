@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 
 public class KillByContact : MonoBehaviour {
-
-	void OnTriggerEnter2D(Collider2D other)
+    
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
@@ -11,8 +11,17 @@ public class KillByContact : MonoBehaviour {
         }
         else if (other.gameObject.tag == "Ghost")
         {
-            ChaserMovement ghost = other.gameObject.GetComponent<ChaserMovement>() as ChaserMovement;
-            (ghost as Resetable).Reset();
+            Resetable[] resetables = other.gameObject.GetComponents<Resetable>();
+            foreach (Resetable resetable in resetables)
+                resetable.Reset();
+
+
+            //if this is monkey
+            //chase the player now
+            try {
+                GetComponent<MonkeyMovement>().target = GameObject.FindWithTag("Player");
+            }
+            catch (NullReferenceException) { /* ignore */ }
         }
     }
 }
