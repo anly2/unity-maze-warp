@@ -10,10 +10,18 @@ public class Movement : MonoBehaviour
     [HideInInspector]
     public ActionHistory actionHistory { get; private set; }
 
+    [HideInInspector]
+    public Vector3 projectedLocation { get; private set; }
+
 
     public Movement() : base()
     {
         actionHistory = new ActionHistory();
+    }
+
+    void Awake()
+    {
+        projectedLocation = gameObject.transform.position;
     }
 
 
@@ -38,6 +46,7 @@ public class Movement : MonoBehaviour
             if (!movement.CanMove(dest))
                 return false;
 
+            movement.projectedLocation = dest;
             movement.SmoothMovement(dest);
             movement.actionHistory.Add(moveAction);
 

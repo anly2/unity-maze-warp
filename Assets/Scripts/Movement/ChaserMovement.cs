@@ -4,7 +4,12 @@ using System.Collections.Generic;
 using System;
 
 public class ChaserMovement : Movement, TurnBased, Resetable {
-    public IEnumerator<ActionHistory.Action> targetActions = null;
+    public virtual IEnumerator<ActionHistory.Action> targetActions { get; set; }
+
+    public ChaserMovement()
+    {
+        targetActions = null; //by default
+    }
     
 	void Start ()
     {
@@ -20,6 +25,11 @@ public class ChaserMovement : Movement, TurnBased, Resetable {
 
 
     void TurnBased.Turn()
+    {
+        Turn();
+    }
+
+    protected virtual void Turn()
     {
         if (targetActions == null)
             return;

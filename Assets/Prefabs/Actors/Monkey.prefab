@@ -12,7 +12,7 @@ GameObject:
   - 212: {fileID: 21296284}
   - 114: {fileID: 11430560}
   - 61: {fileID: 6110150}
-  - 114: {fileID: 11479844}
+  - 114: {fileID: 11401824}
   - 114: {fileID: 11427532}
   m_Layer: 0
   m_Name: Monkey
@@ -64,6 +64,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11401824
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 026474a21e6b9654884e7bc7907d2a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &11427532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,20 +103,6 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300012, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   - {fileID: 21300024, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
---- !u!114 &11479844
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 172740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e1aab3d39b24db438bd18bbf5cb33be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockingLayer:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!212 &21296284
 SpriteRenderer:
   m_ObjectHideFlags: 1

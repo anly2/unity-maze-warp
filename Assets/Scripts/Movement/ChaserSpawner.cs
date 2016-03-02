@@ -61,10 +61,12 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
             if (movement != null)
                 actionHistory = movement.actionHistory;
         }
-        
 
-        chaserMovement.targetActions = actionHistory.GetEnumaration();
 
-        //#! USE PATHFINDING
+        //#!
+        if (chaserMovement is MonkeyMovement)
+            (chaserMovement as MonkeyMovement).target = gameObject;
+        else
+            chaserMovement.targetActions = actionHistory.GetEnumaration();
     }
 }

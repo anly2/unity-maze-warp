@@ -46,7 +46,7 @@ public class Node
 public static class PathFinding
 {
 
-    public static IEnumerator<Vector3> FindPath(Movement self, Vector3 dest)
+    public static IEnumerator<Vector3> FindPath(this Movement self, Vector3 dest)
     {
         List<Vector3> path = new List<Vector3>();
 

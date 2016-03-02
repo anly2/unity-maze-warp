@@ -9,7 +9,6 @@ public class PlayerMovement : Movement, Resetable {
     public float exploreRateOnMove = 0.2f;
     public int sightRadius = 3;
 
-
     void Start()
     {
         (this as Resetable).Register();
