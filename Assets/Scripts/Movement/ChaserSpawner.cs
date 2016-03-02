@@ -15,7 +15,7 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
 
     void Awake ()
     {
-        spawnPosition = gameObject.transform.position;
+        spawnPosition = gameObject.transform.position;      
     }
     
     void Start()
@@ -62,6 +62,9 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
                 actionHistory = movement.actionHistory;
         }
         
+
         chaserMovement.targetActions = actionHistory.GetEnumaration();
+
+        //#! USE PATHFINDING
     }
 }
