@@ -27,7 +27,7 @@ public static class TurnBasedExtensions
 }
 
 
-public class WaitForTurns : YieldInstruction, IEnumerator, TurnBased
+public class WaitForTurns : IEnumerator, TurnBased
 {
     private int turnDelay;
 
@@ -56,7 +56,7 @@ public class WaitForTurns : YieldInstruction, IEnumerator, TurnBased
 
 public class WaitNextTurn : WaitForTurns
 {
-    public WaitNextTurn() : base(0) { }
+    public WaitNextTurn() : base(1) { }
 }
 
 public class WaitForEndOfTurn : IEnumerator

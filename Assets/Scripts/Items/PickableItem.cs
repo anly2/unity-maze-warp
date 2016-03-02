@@ -102,7 +102,7 @@ public class PickableItem : MonoBehaviour, Resetable
     }
 
 
-    void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (pickedUp)
             return;
@@ -188,14 +188,16 @@ public class PickableItem : MonoBehaviour, Resetable
             PickableItem item = slot.carriedItem;
 
             item.RestoreTransform(new Vector3(0, 0, 0));
-            slot.Free();
+            item.slotTaken = null;
             item.pickedUp = false;
+            
+            new WaitNextTurn().Then(() => slot.Free()).Start(this);
 
             return false;
         };
 
-        dropAction(slotTaken.gameObject);
         slotTaken.gameObject.GetComponent<Movement>().actionHistory.Add(dropAction);
+        dropAction(slotTaken.gameObject);
 
         acting = false;
     }

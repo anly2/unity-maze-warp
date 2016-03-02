@@ -8,6 +8,7 @@ public class Banana : PickableItem
 
     protected override void PickUp(GameObject actor)
     {
+        Debug.Log("Picked up by " + actor);
         base.PickUp(actor);
 
         foreach (MonkeyMovement monkey in attracted)
@@ -16,6 +17,7 @@ public class Banana : PickableItem
 
     protected override void Drop()
     {
+        Debug.Log("Dropped");
         base.Drop();
 
         foreach (MonkeyMovement monkey in attracted)
@@ -46,8 +48,15 @@ public class Banana : PickableItem
     }
 
 
-    void OnTriggerEnter2D(Collider2D other)
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
+        if (Vector3.Distance(transform.position, other.transform.position) <= 1)
+        {
+            base.OnTriggerEnter2D(other); //handles picking up
+            return;
+        }
+
+
         if (other.gameObject.tag != "Enemy")
             return;
 
