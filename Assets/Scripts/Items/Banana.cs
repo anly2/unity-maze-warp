@@ -8,7 +8,6 @@ public class Banana : PickableItem
 
     protected override void PickUp(GameObject actor)
     {
-        Debug.Log("Picked up by " + actor);
         base.PickUp(actor);
 
         foreach (MonkeyMovement monkey in attracted)
@@ -17,7 +16,6 @@ public class Banana : PickableItem
 
     protected override void Drop()
     {
-        Debug.Log("Dropped");
         base.Drop();
 
         foreach (MonkeyMovement monkey in attracted)

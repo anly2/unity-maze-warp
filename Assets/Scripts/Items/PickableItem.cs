@@ -190,8 +190,22 @@ public class PickableItem : MonoBehaviour, Resetable
             item.RestoreTransform(new Vector3(0, 0, 0));
             item.slotTaken = null;
             item.pickedUp = false;
-            
+
+            //Free the slot next turn so that the item is not picked up immediately
             new WaitNextTurn().Then(() => slot.Free()).Start(this);
+
+            /* Put on top for one turn
+            SpriteRenderer renderer = item.GetComponent<SpriteRenderer>();
+            renderer.sortingLayerName = "Actor";
+            renderer.sortingOrder = 2;
+
+            new WaitNextTurn().Then(() => {
+                if (renderer.sortingOrder == 2) { //CAS
+                    renderer.sortingLayerName = "Item";
+                    renderer.sortingOrder = 0;
+                }
+            }).Start(this);
+            //*/
 
             return false;
         };
