@@ -5,7 +5,7 @@ using System;
 
 public class ActionHistory : List<ActionHistory.Action>
 {
-    public delegate void Action(GameObject self);
+    public delegate bool Action(GameObject self);
 
     public ActionHistory() {}
     public ActionHistory(List<Action> history) : base(history) { }

@@ -177,6 +177,8 @@ public class PickableItem : MonoBehaviour, Resetable
             item.RestoreTransform(new Vector3(0, 0, 0));
             slot.Free();
             item.pickedUp = false;
+
+            return false;
         };
 
         dropAction(slotTaken.gameObject);
@@ -199,6 +201,7 @@ public class PickableItem : MonoBehaviour, Resetable
             PickableItem item = slot.carriedItem;
 
             item.Activate();
+            return false;
         };
 
         activation(slotTaken.gameObject);

@@ -36,10 +36,12 @@ public class Movement : MonoBehaviour
             Movement movement = self.GetComponent<Movement>();
 
             if (!movement.CanMove(dest))
-                return;
+                return false;
 
             movement.SmoothMovement(dest);
             movement.actionHistory.Add(moveAction);
+
+            return true;
         };
         moveAction(gameObject);
     }

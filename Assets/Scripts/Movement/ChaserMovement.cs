@@ -24,16 +24,16 @@ public class ChaserMovement : Movement, TurnBased, Resetable {
         if (targetActions == null)
             return;
 
-        //while (true)
-        {
-            try {
+        try {
+            while (true)
+            {
                 targetActions.MoveNext();
-                targetActions.Current(gameObject);
-                //break;
+                if (targetActions.Current(gameObject))
+                    break;
             }
-            catch (NullReferenceException e) {
-                //Debug.Log("" + gameObject + e);
-            }
+        }
+        catch (NullReferenceException e) {
+            Debug.Log("" + gameObject + e);
         }
     }
 
