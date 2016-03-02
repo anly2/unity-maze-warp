@@ -11,6 +11,7 @@ GameObject:
   - 95: {fileID: 9543044}
   - 212: {fileID: 21296284}
   - 114: {fileID: 11430560}
+  - 50: {fileID: 5064088}
   - 61: {fileID: 6110150}
   - 114: {fileID: 11401824}
   - 114: {fileID: 11461972}
@@ -33,6 +34,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &5064088
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172740}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &6110150
 BoxCollider2D:
   m_ObjectHideFlags: 1

@@ -56,6 +56,17 @@ public class PickableItem : MonoBehaviour, Resetable
     private CarriedItem slotTaken = null;
     protected bool acting = false; //to avoid infinate recursion with recorded actions
 
+
+    public GameObject holder {
+        get {
+            if (slotTaken == null)
+                return null;
+
+            return slotTaken.gameObject;
+        }
+    }
+
+
     void Awake()
     {
         SpriteRenderer renderer = this.GetComponent<SpriteRenderer>();

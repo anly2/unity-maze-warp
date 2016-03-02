@@ -23,5 +23,6 @@ public class KillByContact : MonoBehaviour {
             }
             catch (NullReferenceException) { /* ignore */ }
         }
+        //Banana is handled in MonkeyMovement
     }
 }

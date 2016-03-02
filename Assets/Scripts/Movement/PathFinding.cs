@@ -53,7 +53,7 @@ public static class PathFinding
         List<Node> open = new List<Node>();
         List<Node> closed = new List<Node>();
 
-        Node start = new Node(self.transform.position);
+        Node start = new Node(self.projectedLocation);
         Node target = new Node(dest);
         open.Add(start);
 
