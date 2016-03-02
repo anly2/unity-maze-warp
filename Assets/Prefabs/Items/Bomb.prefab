@@ -62,8 +62,8 @@ MonoBehaviour:
     type: 2}
   explosionEpicentralObject: {fileID: 151190, guid: 4cd624d168d8a4c4da31b8fb25d84862,
     type: 2}
+  flameObject: {fileID: 169644, guid: 8aba7b8df890f004f8bdd0870f070295, type: 2}
   fuseTurnDuration: 3
-  explosionRadius: 2
 --- !u!212 &21222248
 SpriteRenderer:
   m_ObjectHideFlags: 1

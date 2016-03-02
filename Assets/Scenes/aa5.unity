@@ -1932,6 +1932,10 @@ Prefab:
       propertyPath: m_Name
       value: Bomb (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 11441608, guid: 3e441b76906c5de42bb029326d7aa26f, type: 2}
+      propertyPath: flameObject
+      value: 
+      objectReference: {fileID: 169644, guid: 8aba7b8df890f004f8bdd0870f070295, type: 2}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 3e441b76906c5de42bb029326d7aa26f, type: 2}

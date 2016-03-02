@@ -6,11 +6,9 @@ using System;
 
 public class Bomb : PickableItem {
 
-    [Header("Explosion Prefabs")]
+    [Header("Effect Prefabs")]
     public GameObject explosionPeripheralObject;
     public GameObject explosionEpicentralObject;
-
-    [Header("Flame Prefabs")]
     public GameObject flameObject;
 
     [Header("Bomb Properties")]
@@ -95,8 +93,9 @@ public class Bomb : PickableItem {
 
     void LitFlame()
     {
-        flameObject.transform.parent = transform;
-        Instantiate(flameObject, flameObject.transform.position, Quaternion.identity);
+        GameObject flame = Instantiate(flameObject);
+        flame.transform.parent = transform;
+        flame.transform.localPosition = flameObject.transform.position;
     }
 
     void Explode()

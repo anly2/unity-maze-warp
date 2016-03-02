@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0505bf7dc9e062d4ebf4acf70c5e83a5
-timeCreated: 1456918166
+timeCreated: 1456956755
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
@@ -9,6 +9,7 @@ MonoImporter:
       type: 2}
   - explosionEpicentralObject: {fileID: 151190, guid: 4cd624d168d8a4c4da31b8fb25d84862,
       type: 2}
+  - flameObject: {fileID: 169644, guid: 8aba7b8df890f004f8bdd0870f070295, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
