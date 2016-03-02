@@ -166,14 +166,14 @@ public class LevelManager : MonoBehaviour {
     private struct GhostInfo
     {
         public int turnDelay;
-        public Trajectory trajectory;
+        public ActionHistory actionHistory;
         public Vector3 spawnPoint;
 
-        public GhostInfo(int turnDelay, Vector3 spawnPoint, Trajectory trajectory)
+        public GhostInfo(int turnDelay, Vector3 spawnPoint, ActionHistory actionHistory)
         {
             this.turnDelay = turnDelay;
-            this.trajectory = trajectory;
             this.spawnPoint = spawnPoint;
+            this.actionHistory = actionHistory;
         }
     }
 
@@ -268,11 +268,11 @@ public class LevelManager : MonoBehaviour {
 
     void AddGhost(int turnDelay)
     {
-        Trajectory targetTrajectory = player.GetComponent<Movement>().trajectory.Clone();
+        ActionHistory actionHistory = player.GetComponent<Movement>().actionHistory.Clone();
 
         Vector3 spawnPoint = playerSpawns.Current;
 
-        ghostData.Add(new GhostInfo(turnDelay, spawnPoint, targetTrajectory));
+        ghostData.Add(new GhostInfo(turnDelay, spawnPoint, actionHistory));
     }
 
     IEnumerator ResetAll()
@@ -291,7 +291,7 @@ public class LevelManager : MonoBehaviour {
             spawner.chaserObject = ghostObject;
             spawner.spawnPosition = ghostInfo.spawnPoint;
             spawner.spawnTurnDelay = ghostInfo.turnDelay;
-            spawner.targetTrajectory = ghostInfo.trajectory;
+            spawner.actionHistory = ghostInfo.actionHistory;
         }
     }
 }

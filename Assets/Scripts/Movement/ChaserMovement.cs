@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 
 public class ChaserMovement : Movement, TurnBased, Resetable {
-    public IEnumerator<Vector3> target = null;
+    public IEnumerator<ActionHistory.Action> targetActions = null;
     
 	void Start ()
     {
@@ -21,13 +21,11 @@ public class ChaserMovement : Movement, TurnBased, Resetable {
 
     void TurnBased.Turn()
     {
-        if (target == null)
+        if (targetActions == null)
             return;
 
-        target.MoveNext();
-        Vector3 dest = target.Current;
-        
-        Move(dest);
+        targetActions.MoveNext();
+        targetActions.Current(gameObject);
     }
 
     void Resetable.Reset()

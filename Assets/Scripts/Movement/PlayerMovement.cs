@@ -2,8 +2,9 @@
 using System.Collections;
 using System;
 
-public class PlayerMovement : Movement, Resetable{
+public class PlayerMovement : Movement, Resetable {
 
+    [Header("Exploration Settings")]
     public float exploreRateOnSpawn = 0.2f;
     public float exploreRateOnMove = 0.2f;
     public int sightRadius = 3;
@@ -24,7 +25,7 @@ public class PlayerMovement : Movement, Resetable{
     void Resetable.Reset()
     {
         float opacity = gameObject.GetOpacity();
-        trajectory.Clear();
+        actionHistory.Clear();
 
         StartCoroutine(
             gameObject.FadeOut()

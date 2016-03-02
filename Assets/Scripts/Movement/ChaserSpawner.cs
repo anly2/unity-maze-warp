@@ -6,9 +6,12 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
 {
     public GameObject chaserObject;
     public int spawnTurnDelay;
+
     [HideInInspector]
     public Vector3 spawnPosition;
-    public Trajectory targetTrajectory;
+    [HideInInspector]
+    public ActionHistory actionHistory;
+
 
     void Awake ()
     {
@@ -51,14 +54,14 @@ public class ChaserSpawner : MonoBehaviour, TurnBased
         if (chaserMovement == null)
             return;
 
-        if (targetTrajectory == null)
+        if (actionHistory == null)
         {
             Movement movement = gameObject.GetComponent<Movement>();
 
             if (movement != null)
-                targetTrajectory = movement.trajectory;
+                actionHistory = movement.actionHistory;
         }
         
-        chaserMovement.target = targetTrajectory.GetEnumaration();
+        chaserMovement.targetActions = actionHistory.GetEnumaration();
     }
 }

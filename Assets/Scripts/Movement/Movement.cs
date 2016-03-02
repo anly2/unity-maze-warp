@@ -8,26 +8,38 @@ public class Movement : MonoBehaviour
     public LayerMask blockingLayer;
 
     [HideInInspector]
-    public Trajectory trajectory { get; private set; }
+    public ActionHistory actionHistory { get; private set; }
 
     public Movement() : base()
     {
-        trajectory = new Trajectory();
+        actionHistory = new ActionHistory();
     }
+
+
+    public bool CanMove(Vector3 dest)
+    {
+        return CanMove(transform.position, dest);
+    }
+
+    public bool CanMove(Vector3 from, Vector3 to)
+    {
+        RaycastHit2D hit = Physics2D.Linecast(from, to, blockingLayer);
+        return (hit.transform == null);
+    }
+
 
     public void Move(Vector3 dest)
     {
         if (!CanMove(dest))
             return;
 
-        trajectory.Add(dest);
-        SmoothMovement(dest);
-    }
+        ActionHistory.Action movement = delegate (GameObject self) {
+            self.GetComponent<Movement>()
+                .SmoothMovement(dest);
+        };
 
-    public bool CanMove(Vector3 dest)
-    {
-        RaycastHit2D hit = Physics2D.Linecast(transform.position, dest, blockingLayer);
-        return (hit.transform == null);
+        movement(gameObject);
+        actionHistory.Add(movement);
     }
 
     Coroutine SmoothMovement(Vector3 end)
