@@ -35,6 +35,11 @@ public class Bomb : PickableItem {
 
     protected override void Activate()
     {
+        if (acting)
+            return;
+
+        base.Activate();
+
         Drop();
 
         armed = StartCoroutine(Arm());

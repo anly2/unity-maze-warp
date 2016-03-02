@@ -54,6 +54,7 @@ public class PickableItem : MonoBehaviour, Resetable
 
     private bool pickedUp = false;
     private CarriedItem slotTaken = null;
+    protected bool acting = false; //to avoid infinate recursion with recorded actions
 
     void Awake()
     {
@@ -109,11 +110,15 @@ public class PickableItem : MonoBehaviour, Resetable
         if (!pickedUp)
             return;
 
+        if (slotTaken.gameObject.tag != "Player")
+            return;
+        
+
         if (Input.GetButton("Fire1"))
-            Activate();
+            new WaitForEndOfTurn().Then(() => Activate()).Start(this);
         else
         if (Input.GetButton("Fire2"))
-            Drop();
+            new WaitForEndOfTurn().Then(() => Drop()).Start(this);
 
     }
 
@@ -159,10 +164,46 @@ public class PickableItem : MonoBehaviour, Resetable
 
     protected virtual void Drop()
     {
-        RestoreTransform(new Vector3(0, 0, 0));
-        slotTaken.Free();
-        pickedUp = false;
+        if (acting) //avoid infinite recursion
+            return;
+
+        acting = true;
+
+        ActionHistory.Action dropAction = delegate (GameObject actor)
+        {
+            CarriedItem slot = actor.GetComponent<CarriedItem>();
+            PickableItem item = slot.carriedItem;
+
+            item.RestoreTransform(new Vector3(0, 0, 0));
+            slot.Free();
+            item.pickedUp = false;
+        };
+
+        dropAction(slotTaken.gameObject);
+        slotTaken.gameObject.GetComponent<Movement>().actionHistory.Add(dropAction);
+
+        acting = false;
     }
 
-    protected virtual void Activate() { }
+    protected virtual void Activate()
+    {
+        if (acting) //avoid infinite recursion
+            return;
+
+        acting = true;
+
+        ActionHistory.Action activation = null;
+        activation = delegate (GameObject actor)
+        {
+            CarriedItem slot = actor.GetComponent<CarriedItem>();
+            PickableItem item = slot.carriedItem;
+
+            item.Activate();
+        };
+
+        activation(slotTaken.gameObject);
+        slotTaken.gameObject.GetComponent<Movement>().actionHistory.Add(activation);
+
+        acting = false;
+    }
 }

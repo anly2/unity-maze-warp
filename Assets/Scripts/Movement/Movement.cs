@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     [HideInInspector]
     public ActionHistory actionHistory { get; private set; }
 
+
     public Movement() : base()
     {
         actionHistory = new ActionHistory();
@@ -30,16 +31,17 @@ public class Movement : MonoBehaviour
 
     public void Move(Vector3 dest)
     {
-        if (!CanMove(dest))
-            return;
+        ActionHistory.Action moveAction = null;
+        moveAction = delegate (GameObject self) {
+            Movement movement = self.GetComponent<Movement>();
 
-        ActionHistory.Action movement = delegate (GameObject self) {
-            self.GetComponent<Movement>()
-                .SmoothMovement(dest);
+            if (!movement.CanMove(dest))
+                return;
+
+            movement.SmoothMovement(dest);
+            movement.actionHistory.Add(moveAction);
         };
-
-        movement(gameObject);
-        actionHistory.Add(movement);
+        moveAction(gameObject);
     }
 
     Coroutine SmoothMovement(Vector3 end)

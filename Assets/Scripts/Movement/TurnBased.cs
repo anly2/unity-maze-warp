@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public interface TurnBased {
     void Turn();
@@ -56,4 +57,19 @@ public class WaitForTurns : YieldInstruction, IEnumerator, TurnBased
 public class WaitNextTurn : WaitForTurns
 {
     public WaitNextTurn() : base(0) { }
+}
+
+public class WaitForEndOfTurn : IEnumerator
+{
+    public object Current { get { return null; } }
+
+    public bool MoveNext()
+    {
+        return Managers.Turn.TurnInProgress;
+    }
+
+    public void Reset()
+    {
+        throw new NotImplementedException();
+    }
 }
