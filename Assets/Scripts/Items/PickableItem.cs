@@ -114,10 +114,12 @@ public class PickableItem : MonoBehaviour, Resetable
             return;
         
 
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
+        {
             new WaitForEndOfTurn().Then(() => Activate()).Start(this);
+        }
         else
-        if (Input.GetButton("Fire2"))
+        if (Input.GetButtonDown("Fire2"))
             new WaitForEndOfTurn().Then(() => Drop()).Start(this);
 
     }
