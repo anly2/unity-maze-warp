@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public static class CoroutineExtentions
+public static class CoroutineExtensions
 {
     public delegate void Action();
     public delegate object Expression();

@@ -77,8 +77,8 @@ public class LevelManager : MonoBehaviour {
     {
         //Late-bindings
         ButtonListener lCancelListener = null; //later-defined
-        CoroutineExtentions.Action lExplore = null; //later-defined
-        CoroutineExtentions.Action lFinishIntro = null; //later-defined
+        CoroutineExtensions.Action lExplore = null; //later-defined
+        CoroutineExtensions.Action lFinishIntro = null; //later-defined
         Coroutine lIntro = null; //later-defined, changes multiple times
 
         Camera camera = Camera.main;
