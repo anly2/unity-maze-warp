@@ -28,11 +28,30 @@ public class Bomb : PickableItem {
         base.Reset();
     }
 
+
+    private static bool tooltipsShownAlready = false;
+
     protected override void PickUp(GameObject actor)
     {
-        if (armed == null)
-            base.PickUp(actor);
+        if (armed != null)
+            return;
+
+        base.PickUp(actor);
+
+        if (actor.tag == "Player" && !tooltipsShownAlready)
+        {
+            Managers.UI.ShowBombTooltips();
+            tooltipsShownAlready = true;
+        }
     }
+
+    protected override void Drop()
+    {
+        base.Drop();
+
+        Managers.UI.HideBombTooltips(); //should not crash if already hidden
+    }
+
 
     protected override void Activate()
     {

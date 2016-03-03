@@ -120,4 +120,20 @@ public class UIManager : MonoBehaviour {
     {
         animator.SetTrigger("Cancel Screen");
     }
+
+
+    public void ShowBombTooltips()
+    {
+        GameObject tooltips = GameObject.Find("HUD/Tooltips/Bomb");
+        tooltips.SetActive(true);
+
+        new WaitForTurns(2).Then(() => HideBombTooltips()).Start(this);
+        //Hide should not crash if already hidden
+    }
+
+    public void HideBombTooltips()
+    {
+        GameObject tooltips = GameObject.Find("HUD/Tooltips/Bomb");
+        tooltips.SetActive(false);
+    }
 }
