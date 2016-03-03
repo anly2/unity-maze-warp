@@ -30,7 +30,7 @@ public class Banana : PickableItem
         foreach (MonkeyMovement monkey in attracted)
             monkey.GiveUpOnCurrentTarget();
 
-        if (!gameObject.active)
+        if (!gameObject.activeInHierarchy)
             return;
 
         fadeOut = gameObject.FadeOut()
