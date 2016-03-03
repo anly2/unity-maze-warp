@@ -30,6 +30,9 @@ public class Banana : PickableItem
         foreach (MonkeyMovement monkey in attracted)
             monkey.GiveUpOnCurrentTarget();
 
+        if (!gameObject.active)
+            return;
+
         fadeOut = gameObject.FadeOut()
             .Then(() => gameObject.SetActive(false))
             .Start(this);
