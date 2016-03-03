@@ -17,6 +17,8 @@ public class Bomb : PickableItem {
 
     private Coroutine armed = null;
 
+    private static bool tooltipsShownAlready = false;
+
     protected override void Reset()
     {
         if (armed != null)
@@ -25,11 +27,9 @@ public class Bomb : PickableItem {
 
         gameObject.SetActive(true);
 
+        Managers.UI.HideBombTooltips();
         base.Reset();
     }
-
-
-    private static bool tooltipsShownAlready = false;
 
     protected override void PickUp(GameObject actor)
     {

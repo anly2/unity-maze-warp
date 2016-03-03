@@ -127,7 +127,7 @@ public class UIManager : MonoBehaviour {
         GameObject tooltips = GameObject.Find("HUD/Tooltips/Bomb");
         tooltips.SetActive(true);
 
-        new WaitForTurns(2).Then(() => HideBombTooltips()).Start(this);
+        //new WaitForTurns(3).Then(() => HideBombTooltips()).Start(this);
         //Hide should not crash if already hidden
     }
 
