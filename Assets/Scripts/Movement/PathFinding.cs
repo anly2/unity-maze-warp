@@ -13,7 +13,6 @@ public class Node
     public Node(Vector3 position)
     {
         this.position = position;
-        //this.costSoFar = costSoFar;
     }
 
     public int util
@@ -26,18 +25,10 @@ public class Node
     public List<Node> Expand()
     {
         List<Node> expended = new List<Node>();
-        int y = (int) position.y;
-        int x = (int) position.x;
-        for (int yoffset = -1; yoffset <= 1; yoffset++)
-        {
-            int newy = y + yoffset;
-            for (int xoffset = -1; xoffset <= 1; xoffset++)
-            {
-                int newx = x + xoffset;
-                if (xoffset * yoffset == 0 && !(xoffset == 0 && yoffset == 0))
-                    expended.Add(new Node(new Vector3(newx, newy, position.z)));
-            }
-        }
+        expended.Add(new Node(new Vector3(position.x + 1, position.y, position.z)));
+        expended.Add(new Node(new Vector3(position.x - 1, position.y, position.z)));
+        expended.Add(new Node(new Vector3(position.x, position.y + 1, position.z)));
+        expended.Add(new Node(new Vector3(position.x, position.y - 1, position.z)));
         return expended;
     }
 }
@@ -51,7 +42,6 @@ public static class PathFinding
         List<Vector3> path = new List<Vector3>();
 
         List<Node> open = new List<Node>();
-        List<Node> closed = new List<Node>();
 
         Node start = new Node(self.projectedLocation);
         Node target = new Node(dest);
@@ -62,13 +52,10 @@ public static class PathFinding
             Node curr = open[0];
             for (int i = 0; i < open.Count; i++)
             {
-                if (open[i].util < curr.util || open[i].util == curr.util && open[i].costRemain < curr.costRemain)
-                {
+                if (open[i].util < curr.util)
                     curr = open[i];
-                }
             }
             open.Remove(curr);
-            closed.Add(curr);
 
             if (curr.position == target.position)
             {
@@ -81,7 +68,7 @@ public static class PathFinding
             foreach (Node neighbour in expanded)
             {
                 bool canMove = self.CanMove(curr.position, neighbour.position);
-                if (!canMove || closed.Contains(neighbour))
+                if (!canMove)
                     continue;
                 int newPathToNeighbour = curr.costSoFar + GetDistance(curr, neighbour);
                 if (!open.Contains(neighbour) || newPathToNeighbour < neighbour.costSoFar)
